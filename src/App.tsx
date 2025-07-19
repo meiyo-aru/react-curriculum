@@ -1,8 +1,7 @@
 import AboutMe from "./components/AboutMe";
 import { useEffect, useState } from "react";
 import axios from "axios";
-/* import { useState } from "react";
- */
+
 function App() {
     const [about, setAboutMe] = useState("");
     useEffect(() => {

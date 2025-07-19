@@ -1,13 +1,18 @@
-import Card from "./card";
+import Card from "./Card";
 import React from 'react';
-import { useState } from "react";
 
-const AboutMe: React.FC = () => {
+interface AboutMeProps {
+  title: string;
+  text: string;
+}
+
+const AboutMe: React.FC<AboutMeProps> = ({
+  title, 
+  text
+}) => {
   return (
     <>
-      <Card title="Sobre mim" content={
-        <p>teste</p>
-      }></Card>
+      <Card title={title} content={text} />
     </>
   );
 }

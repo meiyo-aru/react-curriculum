@@ -1,4 +1,4 @@
-import Card from "./card";
+import Card from "./Card";
 import React from 'react';
 
 interface AboutMeProps {

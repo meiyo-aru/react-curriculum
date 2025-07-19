@@ -1,4 +1,3 @@
-import Card from "./components/card";
 import AboutMe from "./components/AboutMe";
 import { useEffect, useState } from "react";
 import axios from "axios";

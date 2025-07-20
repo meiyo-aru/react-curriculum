@@ -1,7 +1,6 @@
-@use '../utilities/mixins';
-@use '../layout/container';
-@use '../utilities/variables';
-
+@use '../../static/scss/partials/utilities/mixins';
+/* @use '../../static/scss/partials/utilities/variables';
+ */
 .card {
     text-align: left;
     @media only screen and (min-width: 729px) {
@@ -27,11 +26,28 @@
     }
 }
 
+.sm-card.min-size {
+    min-height: 20px;
+    min-width: 50px;
+}
+
+
+.card.min-size {
+    min-height: 150px;
+    min-width: 95%;
+}
+
 header {
     @extend .card;
     color: white;
     background: linear-gradient(150deg, #8000ff, #00ffd0);
 }
+.content {
+    padding:12px 10px;
+    z-index: 5;
+}
+
+/* 
 #see-more {
     height:31px;
     padding: 0px 0px;
@@ -82,4 +98,4 @@ header {
 .percentage {
     height: 100%;
     background-color: #7b09fd;
-}
+} */

@@ -49,10 +49,7 @@ body {
     justify-content: space-between;
 }
 
-.content {
-    padding:12px 10px;
-    z-index: 5;
-}
+
 
 .expansive-container {
     max-height: 0px;
@@ -69,65 +66,171 @@ body {
     max-height: 600px;
 }
 
+
 // @media
 @media only screen and (min-width: 1921px){
-    .sm-gap {
-        gap: 5px 10px;
+    .sm-column-gap {
+        column-gap: 0.7em;
     }
-    .gap {
-        gap: 8px 15px;
+    .md-column-gap {
+        column-gap: 1.2em;
     }
-    .lg-gap {
-        gap: 8px 35px;
+    .lg-column-gap {
+        column-gap: 2.2em;
     }
 
+    .sm-row-gap {
+        row-gap: 10em;
+    }
+    .md-row-gap {
+        row-gap: 15em;
+    }
+    .lg-row-gap {
+        row-gap: 25em;
+    }
+    
+    
+    .sm-padding {
+        padding: 14px;
+    }
+    .md-padding {
+        padding: 18px;
+    }
+    .lg-padding {
+        padding: 25px;
+    }
 }
 
 @media only screen and (min-width: 1441px) and (max-width: 1920px){
-    .sm-gap {
-        gap: 5px 10px;
+    .sm-column-gap {
+        column-gap: 0.5em;
     }
-    .gap {
-        gap: 8px 15px;
+    .md-column-gap {
+        column-gap: 1em;
     }
-    .lg-gap {
-        gap: 8px 35px;
+    .lg-column-gap {
+        column-gap: 2em;
+    }
+
+    
+    .sm-row-gap {
+        row-gap: 0.5em;
+    }
+    .md-row-gap {
+        row-gap: 1em;
+    }
+    .lg-row-gap {
+        row-gap: 2em;
+    }
+    
+    .sm-padding {
+        padding: 14px;
+    }
+    .md-padding {
+        padding: 16px;
+    }
+    .lg-padding {
+        padding: 20px;
     }
 }
 @media only screen and (min-width: 728px) and (max-width: 1440px){
-    .sm-gap {
-        gap: 8px 10px;
+    .sm-column-gap {
+        column-gap: 0.4em;
     }
-    .gap {
-        gap: 8px 20px;
+    .md-column-gap {
+        column-gap: 0.9em;
     }
-    .lg-gap {
-        gap: 8px 30px;
+    .lg-column-gap {
+        column-gap: 1.9em;
+    }
+
+    
+    .sm-row-gap {
+        row-gap: 0.4em;
+    }
+    .md-row-gap {
+        row-gap: 0.9em;
+    }
+    .lg-row-gap {
+        row-gap: 1.9em;
+    }
+    
+    .sm-padding {
+        padding: 9px;
+    }
+    .md-padding {
+        padding: 12px;
+    }
+    .lg-padding {
+        padding: 14px;
     }
 }
 
 @media only screen and (min-width: 426px) and (max-width:768px) {
-    .sm-gap {
-        gap: 4px 8px;
+    .sm-column-gap {
+        column-gap: 0.4em;
     }
-    .gap {
-        gap: 4px 10px;
+    .md-column-gap {
+        column-gap: 0.8em;
     }
-    .lg-gap {
-        gap: 5px 12px;
+    .lg-column-gap {
+        column-gap: 1.8em;
+    }
+
+    
+    .sm-row-gap {
+        row-gap: 0.4em;
+    }
+    .md-row-gap {
+        row-gap: 0.8em;
+    }
+    .lg-row-gap {
+        row-gap: 1.8em;
+    }
+    
+    .sm-padding {
+        padding: 7px;
+    }
+    .md-padding {
+        padding: 10px;
+    }
+    .lg-padding {
+        padding: 12px;
     }
 }
 @media only screen and (max-width:425px) {
-    .sm-gap {
-        gap: 4px 6px;
+    .sm-column-gap {
+        column-gap: 0.4em;
     }
-    .gap {
-        gap: 4px 10px;
+    .md-column-gap {
+        column-gap: 0.7em;
     }
-    .lg-gap {
-        gap: 5px 15px;
+    .lg-column-gap {
+        column-gap: 1.7em;
     }
+
+    
+    .sm-row-gap {
+        row-gap: 0.4em;
+    }
+    .md-row-gap {
+        row-gap: 0.7em;
+    }
+    .lg-row-gap {
+        row-gap: 1.7em;
+    }
+    
+    .sm-padding {
+        padding: 5px;
+    }
+    .md-padding {
+        padding: 8px;
+    }
+    .lg-padding {
+        padding: 10px;
+    }
+
     #base-container > div, #base-container {
-        gap: 0px;
+        column-gap: 0px;
     }
 }

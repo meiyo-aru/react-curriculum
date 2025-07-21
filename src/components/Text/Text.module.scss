@@ -1,0 +1,34 @@
+.h5, .h3,.h2, .h1, .p {
+    max-width:100%;
+}
+
+.h5 span{
+    display: flex;
+    max-width: 100%;
+    width: 350px;
+    height: 25px;
+}
+
+.h3 span{
+    display: flex;
+    max-width: 100%;
+    width: 300px;
+    height: 25px;
+}
+
+.h2 span {
+    display: flex;
+    max-width: 100%;
+    width: 500px;
+    height: 35px;
+}
+
+.h1 span{
+    display: flex;
+    max-width: 100%;
+    width: 700px;
+    height: 45px;
+}
+.p span {
+    word-break:break-all;
+}

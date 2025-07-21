@@ -1,48 +1,48 @@
 import { useEffect, useState } from "react"
-import type {AcademicTraining} from "../../types/AcademicTraining"
+import type { Experience } from "../../types/Experience"
 import axios from "axios"
 import Card from "../Card/Card"
+import Loading from "../Loading/Loading"
 import Text from "../Text/Text"
 import SeeMore from "../../features/SeeMore/SeeMore"
-import Loading from "../Loading/Loading"
-import { setSeeMoreClicked } from "../../features/SeeMore/SeeMoreSlice"
 import { useDispatch, useSelector } from "react-redux"
-import type {RootState} from "../../store"
+import { setSeeMoreClicked } from "../../features/SeeMore/SeeMoreSlice"
+import type { RootState } from "../../store"
 
-interface AcademicTrainingProps {
+interface ExperiencesProps {
     personId?: number | null
     componentId?: string
     isLoading?: boolean
 }
-
-const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
+const Experiences: React.FC<ExperiencesProps> = ({
     personId,
-    componentId = "AcademicTrainings",
+    componentId = "Experiences",
     isLoading
 }) => {
-    const [academicTrainings, setAcademicTraining] = useState<AcademicTraining[] | null>(null)
+    const [experiences, setExperiences] = useState<Experience[] | null>(null)
     const [hoveredItemId, setHoveredItemId] = useState<number | null>(null)
 
     useEffect(() => {
-        const fetchData = async () => {
+        const  fetchData = async () => {
             try {
                 const startTimeStamp: number = Date.now();
 
-                const response = await axios.get("https://curriculum-data-api.onrender.com/get/academic_training?people_id=" + personId)
+                const response = await axios.get("https://curriculum-data-api.onrender.com/get/experience?people_id=" + personId)
 
                 const endTimeStamp: number = Date.now();
-
                 const result: number = endTimeStamp - startTimeStamp;
-                console.log(`Total request time for academicTraining: ${result}ms`);
-
-                if(response) {
-                    setAcademicTraining(response.data)
+                console.log(`Total request time for Experiences: ${result}ms`);
+                
+                if(response){
+                    setExperiences(response.data)
                 }
+                
             } catch (error) {
-                console.error("Error fetching for academicTraining data:", error);
+                console.error("Error fetching  for Experiences data:", error);
             }
-        } 
-        fetchData()
+        }
+
+        fetchData();
     }, [personId])
 
     const handleMouseEnter = (itemId:number) => {
@@ -51,22 +51,22 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
     const handleMouseLeave = () => {
         setHoveredItemId(null)
     }
-
+    
     const SeeMoreState = useSelector((state: RootState) => state.SeeMore)
     const dispatch = useDispatch();
 
-    if(!isLoading && academicTrainings){
+    if(!isLoading && experiences) {
         return (
-            <Card title="Formações Acadêmicas" boxShadow={true} isLoading={isLoading} onMouseLeave={() => handleMouseLeave()} content={
+            <Card title="Experiências" boxShadow={true} isLoading={isLoading} onMouseLeave={() => handleMouseLeave()} content={
                 <div className="column sm-row-gap">
-                    {academicTrainings?.map((item)=>(
+                    {experiences?.map((item)=>(
                         <Card key={item.id} isLoading={isLoading} boxShadow={true} onMouseEnter={() => handleMouseEnter(item.id)} type="card" content={
                             <div className="column sm-row-gap">
                                 <div className="row flex sm-column-gap sm-row-gap">
                                     <Text type="h3" isLoading={isLoading} content={item.name}></Text>
                                     <span className="row flex sm-row-gap sm-column-gap">
-                                        <Card type="smCard" isLoading={isLoading} cardClasses="bg-light-blue" title={item.level}></Card>
-                                        <Card type="smCard" isLoading={isLoading} cardClasses={item.end_date ? "bg-green" : "bg-orange"} title={item.end_date ? "Completo" : "Cursando"}></Card>
+                                        <Card type="smCard" isLoading={isLoading} cardClasses="bg-light-blue" title={item.position}></Card>
+                                        <Card type="smCard" isLoading={isLoading} cardClasses={item.end_date ? "bg-orange" : "bg-green"} title={item.end_date ? item.end_date : "Empregado aqui"}></Card>
                                     </span>
                                 </div>
                                 <div className="responsive-row">
@@ -77,7 +77,7 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
                                                     <span>
                                                         <Text type="h5" isLoading={isLoading} content={
                                                             <>
-                                                                <strong>Instituição: </strong>{item.institution}
+                                                                <strong>Empresa: </strong>{item.enterprise}
                                                             </>
                                                             }></Text>
                                                     </span>
@@ -121,11 +121,10 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
                 </div>
             }></Card>
         )
-    } else { 
+    } else {
         return (
-            <Loading title="Formação Acadêmica"></Loading>
+            <Loading title="Experiências"></Loading>
         )
     }
-
 }
-export default AcademicTrainings;
+export default Experiences

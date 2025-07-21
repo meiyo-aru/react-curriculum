@@ -16,15 +16,13 @@ const Text: React.FC<TextProps> = ({
         case "p":
             return (
                 isLoading ?
-                    <p className={`${styles.p}`} style={style}>
-                        <div className={`${"column"} ${"md-row-gap"}`}>
-                            <div className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "100%", height: "20px"}}></div>
-                            <div className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "70%", height: "20px"}}></div>
-                            <div className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "40%", height: "20px"}}></div>
-                        </div>
+                    <p className={`${styles.p} ${"column"} ${"md-row-gap"}`} style={style}>
+                        <span className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "100%", height: "20px"}}></span>
+                        <span className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "70%", height: "20px"}}></span>
+                        <span className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "40%", height: "20px"}}></span>
                     </p>
                     :    
-                    <p style={style}>
+                    <p className={`${styles.p}`} style={style}>
                         {content && content}
                     </p>
                 
@@ -34,7 +32,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 isLoading ?
                     <h1 className={`${styles.h1}`} style={style}>
-                        <div className={`${"loading-gradient"} ${"sm-rounded"}`}></div>
+                        <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h1>
                     :    
                     <h1 style={style}>
@@ -47,7 +45,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 isLoading ?
                     <h2 className={`${"styled-title"} ${styles.h2}`} style={style}>
-                        <div className={`${"loading-gradient"} ${"sm-rounded"}`}></div>
+                        <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h2>
                     :    
                     <h2 className={`${"styled-title"}`} style={style}>
@@ -61,7 +59,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 isLoading ?
                     <h3 className={`${styles.h3}`} style={style}>
-                        <div className={`${"loading-gradient"} ${"sm-rounded"}`}></div>
+                        <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h3>
                     :    
                     <h3 style={style}>
@@ -72,7 +70,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 isLoading ?
                     <h5 className={`${styles.h5}`} style={style}>
-                        <div className={`${"loading-gradient"} ${"sm-rounded"}`}></div>
+                        <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h5>
                     :    
                     <h5 style={style}>

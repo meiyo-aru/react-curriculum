@@ -1,6 +1,6 @@
 import Card from "../Card/Card";
-import React from 'react';
-import Paragraph from "../Text/Paragraph";
+import React from "react";
+import Text from "../Text/Text";
 
 interface AboutMeProps {
   text: string | null
@@ -12,7 +12,7 @@ const AboutMe: React.FC<AboutMeProps> = ({
   isLoading
 }) => {
   return (
-    <Card isLoading={isLoading} title="Sobre mim" content={<Paragraph isLoading={isLoading} content={text && text} />} />
+    <Card isLoading={isLoading} title="Sobre mim" boxShadow={true} content={<Text isLoading={isLoading} type="p" content={text && text} />} />
   );
 }
 export default AboutMe;

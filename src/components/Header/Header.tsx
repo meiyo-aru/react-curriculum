@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({
     isLoading
 }) => {
     return (
-        <Card isLoading={isLoading} content={
+        <Card boxShadow={true} isLoading={isLoading} content={
             <>
                 <Text type="h1" isLoading={isLoading} content={person && person.name}></Text>
                 <Text type="h2" isLoading={isLoading} content={person && person.positions}></Text>

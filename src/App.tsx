@@ -1,90 +1,50 @@
-import AboutMe from "./components/AboutMe/AboutMe";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "./components/Card/Card";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import AboutMe from "./components/AboutMe/AboutMe";
+import Header from "./components/Header/Header";
 
-interface Person {
-  name: string
-  positions: string
-  about: string
-  address: string
-  phone_01: string
-  phone_02: string
-  mail: string
-  linkedin: string
-  id: number
-}
+import type { Person } from "./types/Person"
+import AcademicTrainings from "./components/AcademicTrainings/AcademicTrainings";
 
-/*   switch (type) {
-    case 'tag': 
-      if (title) {
-        return (
-          <div className={styles.smCard}>
-            <h5>{title}</h5>
-          </div>
-        )
-      } else setLoading(true);
-      break;
-
-    case 'listItem':
-      if(content){
-        return (
-          <div className={styles.listItem}>
-            {content}
-          </div>
-        )
-      } else setLoading(true);
-      break;
-
-    default:
-      console.log('default')
-      if(content){
-        return (
-          <div className={styles.card}>
-            {title && <h2>{title}</h2>}
-            {content}
-          </div>
-        );
-      } else setLoading(true);
-  }  */
 function App() {
-    const [people, setPeople] = useState<Person | null>(null);
-    const [loadingPeople, setLoadingPeople] = React.useState<boolean>(true);
+  const personId = 1;
+  const [person, setPeople] = useState<Person | null>(null);
+  const [loadingPeople, setLoadingPeople] = React.useState<boolean>(true);
 
-    const handleLoadingPeople = (loading: boolean) => {
-        setLoadingPeople(loading);
-    }
+  const handleLoadingPeople = (loading: boolean) => {
+      setLoadingPeople(loading);
+  }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const startTimeStamp: number = Date.now();
-                
-                const response = await axios.get('https://curriculum-data-api.onrender.com/get/people');
-                
-                const endTimeStamp: number = Date.now();
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const startTimeStamp: number = Date.now();
+              
+              const response = await axios.get("https://curriculum-data-api.onrender.com/get/people?people_id=" + personId);
+              
+              const endTimeStamp: number = Date.now();
 
-                const result: number = endTimeStamp - startTimeStamp;
-                console.log(`Tempo total de requisição people: ${result}ms`);
+              const result: number = endTimeStamp - startTimeStamp;
+              console.log(`Tempo total de requisição para person: ${result}ms`);
 
-                if(response){
-                    setPeople(response.data);
-                    handleLoadingPeople(false);
-                }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-        fetchData();
-    }, []);
-    
+              if(response){
+                  setPeople(response.data);
+                  handleLoadingPeople(false);
+              }
+          } catch (error) {
+              console.error("Error fetching data:", error);
+          }
+      };
+      fetchData();
+  }, []);
+  
 
-    return (
-        <>
-          <AboutMe text={people ? people.about : null} isLoading={loadingPeople}/>
-
-        </>
-    )
+  return (
+      <div className="column md-row-gap">
+        <Header person={person && person} isLoading={loadingPeople}></Header>
+        <AboutMe text={person && person.about} isLoading={loadingPeople}></AboutMe>
+        <AcademicTrainings personId={personId} isLoading={loadingPeople}></AcademicTrainings>
+      </div>
+  )
 }
 export default App;

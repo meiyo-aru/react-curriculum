@@ -14,16 +14,16 @@ return (
             <div className="column sm-row-gap">
                 <div className="row flex md-column-gap md-row-gap">
                     <Text type="h3" isLoading={true}></Text>
-                    <Card type="smCard" isLoading={true} cardClasses="bg-light-blue"></Card>
-                    <Card type="smCard" isLoading={true} cardClasses="bg-green"></Card>
+                    <Card type="smCard" isLoading={true} classes="bg-light-blue"></Card>
+                    <Card type="smCard" isLoading={true} classes="bg-green"></Card>
                 </div>
-                <Card isLoading={true} type="card" cardClasses="bg-light-grey center" content={
+                <Card isLoading={true} type="card" classes="bg-light-grey center" content={
                     <div className="column sm-row-gap">
-                        <div className="row flex">
+                        <div className="row sm-column-gap sm-row-gap flex">
                             <Text type="h5" isLoading={true} style={{flexGrow: "1"}}></Text>
                             <Text type="h5" isLoading={true} style={{flexGrow: "1"}}></Text>
                         </div>
-                            <div className="row flex">
+                        <div className="row sm-column-gap sm-row-gap flex">
                             <Text type="h5" isLoading={true} style={{flexGrow: "1"}}></Text>
                             <Text type="h5" isLoading={true} style={{flexGrow: "1"}}></Text>
                         </div>

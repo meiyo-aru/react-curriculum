@@ -6,6 +6,8 @@ import Header from "./components/Header/Header";
 import type { Person } from "./types/Person"
 import AcademicTrainings from "./components/AcademicTrainings/AcademicTrainings";
 import Experiences from "./components/Experiences/Experiences";
+import TechnicalSkills from "./components/TechnicalSkills/TechnicalSkills";
+import Projects from "./components/Projects/Projects";
 
 function App() {
   const personId = 1;
@@ -41,12 +43,18 @@ function App() {
   
 
   return (
-      <div className="column responsive-gap">
-        <Header person={person && person} isLoading={loadingPeople}></Header>
-        <AboutMe text={person && person.about} isLoading={loadingPeople}></AboutMe>
-        <AcademicTrainings personId={personId} isLoading={loadingPeople}></AcademicTrainings>
-        <Experiences personId={personId} isLoading={loadingPeople}></Experiences>
-      </div>
+    <div className="responsive-row responsive-gap">
+        <div className="column responsive-gap" style={{flexGrow: "1"}}>
+            <Header person={person && person} isLoading={loadingPeople}></Header>
+            <AboutMe text={person && person.about} isLoading={loadingPeople}></AboutMe>
+            <AcademicTrainings personId={personId} isLoading={loadingPeople}></AcademicTrainings>
+            <Experiences personId={personId} isLoading={loadingPeople}></Experiences>
+            <Projects personId={personId} isLoading={loadingPeople}></Projects>
+        </div>
+        <div className="column responsive-gap" style={{flexGrow: "1"}}>
+            <TechnicalSkills personId={personId} isLoading={loadingPeople}></TechnicalSkills>
+        </div>
+    </div>
   )
 }
 export default App;

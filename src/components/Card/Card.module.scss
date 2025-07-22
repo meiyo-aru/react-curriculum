@@ -11,9 +11,24 @@
         @include mixins.card-style($padding: 10px 15px, $radius: 5px);
     }
     @media only screen and (max-width: 425px) {
-        @include mixins.card-style($padding: 10px 5px);
+        @include mixins.card-style($padding: 10px 2px);
     }
 }
+
+.card .card {
+    z-index: 1;
+    text-align: left;
+    @media only screen and (min-width: 729px) {
+        @include mixins.card-style($bg-color: white, $padding: 10px 18px, $radius: 5px);
+    }
+    @media only screen and (min-width:426px) and (max-width: 728px) {
+        @include mixins.card-style($padding: 10px 15px, $radius: 5px);
+    }
+    @media only screen and (max-width: 425px) {
+        @include mixins.card-style($padding: 10px 10px, $radius: 5px);
+    }
+}
+
 
 .sm-card {
     z-index: 1;
@@ -36,7 +51,6 @@
 
 .card.min-size {
     min-height: 70px;
-    min-width: 95%;
 }
 
 .header {

@@ -16,10 +16,11 @@ export const SeeMoreSlice = createSlice({
     initialState,    
     reducers: {   
         setSeeMoreClicked: (state, action: PayloadAction<{seeMoreId: number; componentId: string}>) => {
-            state.componentId = action.payload.componentId;
             if (state.seeMoreId === action.payload.seeMoreId  && state.componentId === action.payload.componentId) {
                 state.seeMoreId =  null 
+                state.componentId = null
             } else {
+                state.componentId = action.payload.componentId;
                 state.seeMoreId =  action.payload.seeMoreId
             }
             console.log("ComponentId: " + state.componentId)

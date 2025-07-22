@@ -11,7 +11,7 @@ interface CardProps {
     type?: "smCard" | "card" | "section" | "header"
     boxShadow?: boolean
     isLoading?: boolean
-    cardClasses?: string
+    classes?: string
     onMouseEnter?: React.MouseEventHandler<HTMLElement>
     onMouseLeave?: React.MouseEventHandler<HTMLElement>
     onClick?: React.MouseEventHandler<HTMLElement>
@@ -23,15 +23,15 @@ const Card: React.FC<CardProps> = ({
     type,
     boxShadow,
     isLoading,
-    cardClasses,
+    classes,
     onMouseEnter,
     onMouseLeave,
     onClick
 }) => {
-  const smCardClass = clsx(styles.smCard, "bg-grey", cardClasses, boxShadow && "hover-shadow");
-  const cardClass = clsx(styles.card, "bg-light", cardClasses, boxShadow && "hover-shadow");
-  const sectionClass = clsx(styles.card, "bg-white", cardClasses, boxShadow && "hover-shadow");
-  const headerClass = clsx(styles.header, cardClasses, boxShadow && "hover-shadow");
+  const smCardClass = clsx(styles.smCard, "bg-grey", classes, boxShadow && "hover-shadow");
+  const cardClass = clsx(styles.card, "bg-light", classes, boxShadow && "hover-shadow");
+  const sectionClass = clsx(styles.card, "bg-white", classes, boxShadow && "hover-shadow");
+  const headerClass = clsx(styles.header, classes, boxShadow && "hover-shadow");
 
   switch (type) {
     case "smCard": 

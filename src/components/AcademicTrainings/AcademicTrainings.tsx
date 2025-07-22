@@ -17,7 +17,7 @@ interface AcademicTrainingProps {
 
 const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
     personId,
-    componentId = "AcademicTrainings",
+    componentId = "Formações Acadêmicas",
     isLoading
 }) => {
     const [academicTrainings, setAcademicTraining] = useState<AcademicTraining[] | null>(null)
@@ -57,7 +57,7 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
 
     if(!isLoading && academicTrainings){
         return (
-            <Card title="Formações Acadêmicas" boxShadow={true} isLoading={isLoading} onMouseLeave={() => handleMouseLeave()} content={
+            <Card title={componentId} boxShadow={true} isLoading={isLoading} onMouseLeave={() => handleMouseLeave()} content={
                 <div className="column sm-row-gap">
                     {academicTrainings?.map((item)=>(
                         <Card key={item.id} isLoading={isLoading} boxShadow={true} onMouseEnter={() => handleMouseEnter(item.id)} type="card" content={
@@ -65,12 +65,12 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
                                 <div className="row flex sm-column-gap sm-row-gap">
                                     <Text type="h3" isLoading={isLoading} content={item.name}></Text>
                                     <span className="row flex sm-row-gap sm-column-gap">
-                                        <Card type="smCard" isLoading={isLoading} cardClasses="bg-light-blue" title={item.level}></Card>
-                                        <Card type="smCard" isLoading={isLoading} cardClasses={item.end_date ? "bg-green" : "bg-orange"} title={item.end_date ? "Completo" : "Cursando"}></Card>
+                                        <Card type="smCard" isLoading={isLoading} classes="bg-light-blue" title={item.level}></Card>
+                                        <Card type="smCard" isLoading={isLoading} classes={item.end_date ? "bg-green" : "bg-orange"} title={item.end_date ? "Completo" : "Cursando"}></Card>
                                     </span>
                                 </div>
                                 <div className="responsive-row">
-                                    <Card isLoading={isLoading} type="card" cardClasses="bg-light-grey center" content={
+                                    <Card isLoading={isLoading} type="card" classes="bg-light-grey center" content={
                                         <>
                                             <div className="row sm-row-gap flex">
                                                 <div className="column" style={{flexGrow: "1"}}>
@@ -106,12 +106,12 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
                                                     </span>
                                                 </div>
                                                 <div className={`${"expansive-container"} ${(SeeMoreState.componentId === componentId && SeeMoreState.seeMoreId === item.id) && "active"}`}>
-                                                    <p><strong>Sobre: </strong>{item.about}</p>
+                                                    <p>{item.about}</p>
                                                 </div>
                                             </div>
                                         </>
                                     }></Card>
-                                    <SeeMore isActive={hoveredItemId === item.id} onClick={() => {
+                                    <SeeMore componentId={componentId} seeMoreId={item.id} isActive={hoveredItemId === item.id} onClick={() => {
                                         dispatch(setSeeMoreClicked({seeMoreId: item.id, componentId: componentId}))
                                         }}></SeeMore>
                                 </div>
@@ -123,7 +123,7 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
         )
     } else { 
         return (
-            <Loading title="Formação Acadêmica"></Loading>
+            <Loading title={componentId}></Loading>
         )
     }
 

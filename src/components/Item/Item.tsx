@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../store'
 import { setSeeMoreClicked } from '../../features/SeeMore/SeeMoreSlice.ts'
 
-import style from "./item.module.scss"
+import style from "./Item.module.scss"
 
 interface ItemProps {
     items: AcademicTraining[] | Experience[] | Project[] | null

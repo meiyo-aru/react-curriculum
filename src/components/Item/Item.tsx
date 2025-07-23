@@ -8,6 +8,7 @@ import Text from '../Text/Text'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../store'
 import { setSeeMoreClicked } from '../../features/SeeMore/SeeMoreSlice.ts'
+import {MarkGithubIcon} from '@primer/octicons-react'
 
 import style from "./Item.module.scss"
 
@@ -52,15 +53,28 @@ const Item: React.FC<ItemProps> = ({
                                     <Card isLoading={isLoading} type="card" classes="bg-light-grey center" content={
                                         <>
                                             <div className="row sm-row-gap flex">
-
-                                                    {'tags' in item &&
-                                                        <div className="row sm-row-gap sm-column-gap flex">
-                                                            <strong>Tags: </strong>
-                                                            {item.tags?.split(",").map((tag) => (
-                                                                <Card key={tag} type="smCard" title={tag} isLoading={isLoading}></Card>
-                                                            ))}
-                                                        </div>
-                                                    }
+                                                    <div className='row sm-row-gap sm-column-gap'>
+                                                        {'tags' in item &&
+                                                            <div className="row sm-row-gap sm-column-gap flex">
+                                                                <strong>Tags: </strong>
+                                                                {item.tags?.split(",").map((tag) => (
+                                                                    <Card key={tag} type="smCard" title={tag} isLoading={isLoading}></Card>
+                                                                ))}
+                                                            </div>
+                                                        }
+                                                        {'github' in item &&
+                                                            <a href={item.github ? item.github : undefined} className="github-link" title={`${item.github ? "Clique para ser redirecionado para o Github do projeto" : "Github atualmente indisponível para esse projeto"}`}>
+                                                                <Card type='smCard' isLoading={isLoading} classes={`${item.github ? 'btn-github' : 'btn-inactive'} lg-rounded`} title={
+                                                                    <span style={{textWrap: "nowrap"}}>
+                                                                        <MarkGithubIcon size={24} />
+                                                                        <span style={{marginLeft: "6px"}}>
+                                                                            GitHub
+                                                                        </span>
+                                                                    </span>
+                                                                }></Card>
+                                                            </a>
+                                                        }
+                                                    </div>
                                                     <div className="column sm-column-gap sm-row-gap" style={{flexGrow: "1"}}>    
                                                         {'institution' in item &&
                                                             <Text type="h5" isLoading={isLoading} content={
@@ -86,18 +100,17 @@ const Item: React.FC<ItemProps> = ({
                                                     </div>
                                                     
                                                     <div className={`${'tags' in item ? 'row' : 'column'} sm-column-gap sm-row-gap flex`} style={{flexGrow: "1"}}>
-                                                            <Text type="h5" isLoading={isLoading} style={'tags' in item ? {flexGrow: "1"} : {}} content={
-                                                                <>
-                                                                    <strong>Início: </strong>{item.start_date}
-                                                                </>
-                                                            }></Text>
-                                                            <Text type="h5" isLoading={isLoading} style={'tags' in item ? {flexGrow: "1"} : {}} content={
-                                                                <>
-                                                                    <strong>Fim: </strong>{item.end_date ? item.end_date : "Até o momento"}
-                                                                </>
-                                                            }></Text>
+                                                        <Text type="h5" isLoading={isLoading} style={'tags' in item ? {flexGrow: "1"} : {}} content={
+                                                            <>
+                                                                <strong>Início: </strong>{item.start_date}
+                                                            </>
+                                                        }></Text>
+                                                        <Text type="h5" isLoading={isLoading} style={'tags' in item ? {flexGrow: "1"} : {}} content={
+                                                            <>
+                                                                <strong>Fim: </strong>{item.end_date ? item.end_date : "Até o momento"}
+                                                            </>
+                                                        }></Text>                                            
                                                     </div>
-
                                                     {'resume' in item &&
                                                         <div className={`${style.resume}`}>
                                                             <Text type="h5" content={<><strong>Resumo: </strong> {item.resume}</>}></Text>

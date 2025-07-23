@@ -27,11 +27,16 @@ h5, span {
     margin: 0px;
     font-weight: 200;
 }
-a {
+.link-yellow {
     color: yellow;
     text-decoration: none;
 }
-a:hover {
+.github-link {
+    color: white;
+    text-decoration: none;
+}
+
+.link-yellow:hover {
     text-decoration: underline;
 }
 .styled-title {

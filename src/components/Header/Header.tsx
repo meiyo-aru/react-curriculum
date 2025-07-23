@@ -22,8 +22,8 @@ const Header: React.FC<HeaderProps> = ({
                         <span>Celular: {person?.phone_01} |
                             {person?.phone_02} 
                         </span><br/>
-                        <span>E-mail: <a href={`mailTo:${person?.mail}`}>{person?.mail}</a></span><br/>
-                        <span>LinkedIn: <a href={`http://${person?.linkedin}`}>Perfil</a></span>
+                        <span>E-mail: <a className="link-yellow" href={`mailTo:${person?.mail}`}>{person?.mail}</a></span><br/>
+                        <span>LinkedIn: <a className="link-yellow" href={`http://${person?.linkedin}`}>Perfil</a></span>
                     </>
                 }></Text>
             </>

@@ -1,12 +1,9 @@
-/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
- */
 import styles from "./Card.module.scss"
 import React from "react";
 import clsx from "clsx";
 
 interface CardProps {
-    title?: string | null
+    title?: string | React.ReactNode | null
     content?: React.ReactNode | null
     type?: "smCard" | "card" | "section" | "header"
     boxShadow?: boolean

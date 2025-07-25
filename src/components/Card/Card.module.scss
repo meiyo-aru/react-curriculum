@@ -2,8 +2,8 @@
 /* @use "../../static/scss/partials/utilities/variables";
  */
 .card {
-    z-index: 1;
     text-align: left;
+    position: relative;
     @media only screen and (min-width: 729px) {
         @include mixins.card-style($bg-color: white, $padding: 10px 18px, $radius: 5px);
     }
@@ -16,7 +16,6 @@
 }
 
 .card .card {
-    z-index: 1;
     text-align: left;
     @media only screen and (min-width: 729px) {
         @include mixins.card-style($bg-color: white, $padding: 10px 18px, $radius: 5px);
@@ -31,9 +30,9 @@
 
 
 .sm-card {
-    z-index: 1;
+    position: relative;
     height: max-content;
-    width: fit-content;
+    width: max-content;
     text-align: left;
     @media only screen and (min-width: 728px) {
         @include mixins.card-style($padding: 6px 12px, $radius: 5px);
@@ -56,9 +55,11 @@
 .header {
     @extend .card;
     color: white;
-    background: linear-gradient(150deg, #8000ff, #00ffd0);
+    background: linear-gradient(150deg, #254979, #174e84, #4e7fb6, #14487b);
 }
 .content {
     padding:12px 10px;
-    z-index: 5;
+}
+.flex-grow {
+    flex-grow: 1;
 }

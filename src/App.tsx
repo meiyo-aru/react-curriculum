@@ -43,15 +43,15 @@ function App() {
   
 
   return (
-    <div className="responsive-row responsive-gap">
-        <div className="column responsive-gap" style={{flexGrow: "1"}}>
+    <div className="main-container">
+        <div className="main-container-a">
             <Header person={person && person} isLoading={loadingPeople}></Header>
             <AboutMe text={person && person.about} isLoading={loadingPeople}></AboutMe>
             <AcademicTrainings personId={personId} isLoading={loadingPeople}></AcademicTrainings>
             <Experiences personId={personId} isLoading={loadingPeople}></Experiences>
             <Projects personId={personId} isLoading={loadingPeople}></Projects>
         </div>
-        <div className="column responsive-gap" style={{flexGrow: "1"}}>
+        <div className="main-container-b">
             <TechnicalSkills personId={personId} isLoading={loadingPeople}></TechnicalSkills>
         </div>
     </div>

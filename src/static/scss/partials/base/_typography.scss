@@ -18,22 +18,17 @@ h3 {
     font-weight:400;
 }
 h2 {
-    color: #022d5c;
-    border-bottom: 2px solid #022d5c;
+    color: #8000ff; 
+    border-bottom: 2px solid #8000ff;
     padding-bottom: 5px;
-    font-weight: 600;
+    font-weight: 400;
 }
 h5, span {
     margin: 0px;
     font-weight: 200;
 }
-<<<<<<< Updated upstream
 a {
     color: yellow;
-=======
-.link-yellow {
-    color: #ffff98;
->>>>>>> Stashed changes
     text-decoration: none;
 }
 a:hover {
@@ -80,9 +75,6 @@ body {
     span, h5 {
         font-size: 1.9rem;
     }
-    .sm-font-size {
-        font-size: 1.5rem;
-    }
 }
 
 @media only screen and (min-width: 1440px) and (max-width: 1920px){
@@ -101,9 +93,6 @@ body {
     span, h5 {
         font-size: 1.7rem;
     }
-    .sm-font-size {
-        font-size: 1.3rem;
-    }
 }
 @media only screen and (min-width: 728px) and (max-width: 1440px){
     h1 {
@@ -120,9 +109,6 @@ body {
     }
     span, h5 {
         font-size: 1.7rem;
-    }
-    .sm-font-size {
-        font-size: 1.3rem;
     }
 }
 
@@ -142,9 +128,6 @@ body {
     span, h5 {
         font-size: 1.5rem;
     }
-    .sm-font-size {
-        font-size: 1.1rem;
-    }
 }
 @media only screen and (max-width:425px) {
     h1 {
@@ -161,8 +144,5 @@ body {
     }
     span, h5 {
         font-size: 1.4rem;
-    }
-    .sm-font-size {
-        font-size: 1rem;
     }
 }

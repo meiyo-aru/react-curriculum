@@ -1,3 +1,4 @@
+@use './variables';
 
 @media screen and (min-width: 426px) {
     .hover-shadow {
@@ -25,19 +26,19 @@
 }
 
 .bg-white {
-    background-color: #ffffff !important;
+    background-color: variables.$color-white !important;
     color: rgb(20, 20, 20);
 }
 .bg-light {
-    background-color: #f8f9fa !important;
+    background-color: variables.$color-light !important;
     color: black;
 }
 .bg-grey {
-    background-color: #4b678f !important;
-    color: rgb(255, 255, 255);
+    background-color: variables.$color-grey !important;
+    color: rgb(0, 0, 0);
 }
 .bg-light-grey {
-    background-color: rgb(226, 226, 235) !important;
+    background-color: variables.$color-light-grey !important;
     color: rgb(0, 0, 0);
 }
 .bg-light-blue {
@@ -65,24 +66,6 @@
 .lg-rounded {
     border-radius: 12px;
 }
-<<<<<<< Updated upstream
-=======
-.xl-rounded {
-    border-radius: 30px;
-}
-.btn-inactive {
-    background-color: #b3b3bf !important;
-    color: white;
-}
-.btn-github {
-    color: white;
-    cursor: pointer;
-    transition: transform 0.8s linear(0 0%, 0.22 2.1%, 0.86 6.5%, 1.11 8.6%, 1.3 10.7%, 1.35 11.8%, 1.37 12.9%, 1.37 13.7%, 1.36 14.5%, 1.32 16.2%, 1.03 21.8%, 0.94 24%, 0.89 25.9%, 0.88 26.85%, 0.87 27.8%, 0.87 29.25%, 0.88 30.7%, 0.91 32.4%, 0.98 36.4%, 1.01 38.3%, 1.04 40.5%, 1.05 42.7%, 1.05 44.1%, 1.04 45.7%, 1 53.3%, 0.99 55.4%, 0.98 57.5%, 0.99 60.7%, 1 68.1%, 1.01 72.2%, 1 86.7%, 1 100%);
-}
-.btn-github:hover {
-    transform: scale(0.87);
-}
->>>>>>> Stashed changes
 
 .loading-icon {
     color: #67709b;
@@ -110,3 +93,17 @@
 }
 
 
+
+
+.percentage-bar {
+    width: 98%;
+    height: 10px;
+    border-radius: 15px;
+    background-color: #c4c4c4;
+    overflow: hidden;
+}
+
+.percentage {
+    height: 100%;
+    background-color: #7b09fd;
+} 

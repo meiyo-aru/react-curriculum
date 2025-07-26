@@ -1,4 +1,4 @@
-export interface Languages {
+export interface Language {
   people_id: number
   name: string
   level: string

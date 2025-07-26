@@ -23,8 +23,6 @@ export const SeeMoreSlice = createSlice({
                 state.componentId = action.payload.componentId;
                 state.seeMoreId =  action.payload.seeMoreId
             }
-            console.log("ComponentId: " + state.componentId)
-            console.log("seeMoreId: " + state.seeMoreId)
         }
     },
 });

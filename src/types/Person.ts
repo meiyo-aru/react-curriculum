@@ -1,7 +1,7 @@
 import type { AcademicTraining } from "./AcademicTraining"
 import type { Experience } from "./Experience"
 import type { ExtracurricularCourses } from "./ExtracurricularCourses"
-import type { Languages } from "./Languages"
+import type { Language } from "./Language"
 import type { Project } from "./Project"
 import type { TechnicalSkill } from "./TechnicalSkill"
 
@@ -20,5 +20,5 @@ export interface Person {
   experiences: Experience[]
   projects_rel: Project[]
   skills: TechnicalSkill[]
-  langs: Languages[]
+  langs: Language[]
 }

@@ -10,6 +10,7 @@ import type { RootState } from '../../store'
 import { setSeeMoreClicked } from '../../features/SeeMore/SeeMoreSlice.ts'
 
 import style from "./Item.module.scss"
+import { MarkGithubIcon } from '@primer/octicons-react'
 
 interface ItemProps {
     items: AcademicTraining[] | Experience[] | Project[] | null
@@ -42,25 +43,54 @@ const Item: React.FC<ItemProps> = ({
                     {items?.map((item)=>(
                         <Card key={item.id} isLoading={isLoading} boxShadow={true} onMouseEnter={() => handleMouseEnter(item.id)} type="card" content={
                             <div className="column sm-row-gap">
-                                <div className="row flex sm-column-gap sm-row-gap">
-                                    <Text type="h3" isLoading={isLoading} content={item.name}></Text>
-                                    <span className="row flex sm-row-gap sm-column-gap">
-                                        <Card type="smCard" isLoading={isLoading} classes={item.end_date ? "bg-green" : "bg-orange" } title={item.end_date ? "Completo" : "Em desenvolvimento"}></Card>
+                                <div className="row flex sm-column-gap sm-row-gap space-between">
+                                    <span className='row flex lg-column-gap sm-row-gap'>
+                                        <Text type="h3" isLoading={isLoading} content={item.name}></Text>
+                                        <span className="row flex sm-row-gap sm-column-gap">
+                                            {'institution' in item ?
+                                                <>
+                                                    <Card type="smCard" isLoading={isLoading} classes={`${'bg-grey'} ${"sm-rounded"}`} title={ item.level }></Card>
+                                                    <Card type="smCard" isLoading={isLoading} classes={`${item.end_date ? "bg-green" : "bg-orange" } ${"sm-rounded"}`} title={ item.end_date ? "Completo" : "Cursando" }></Card>
+                                                </>
+                                                :
+                                                'enterprise' in item ?
+                                                    <>
+                                                        <Card type="smCard" isLoading={isLoading} classes={`${ 'bg-grey' } ${"sm-rounded"}`} title={ item.position }></Card>
+                                                        {!item.end_date &&
+                                                            <Card type="smCard" isLoading={isLoading} classes={`${ 'bg-green' } ${"sm-rounded"}`} title={ "Empregado aqui" }></Card>
+                                                        }
+                                                    </>
+                                                    :
+                                                    'github' in item &&
+                                                        <Card type="smCard" isLoading={isLoading} classes={`${ !item.end_date ? 'bg-orange' : 'bg-green' } ${"sm-rounded"}`} title={ !item.end_date ? "Em desenvolvimento" : "Completo" }></Card>                                                    
+                                            }
+                                        </span>
                                     </span>
+                                    {'github' in item &&
+                                        <a href={item.github ? item.github : undefined} className="github-link" title={`${item.github ? "Clique para ser redirecionado para o Github do projeto" : "Github atualmente indisponível para esse projeto"}`}>
+                                            <Card type='smCard' isLoading={isLoading} classes={`${item.github ? 'btn-github bg-grey' : 'btn-inactive'} xl-rounded`} title={
+                                                <span style={{textWrap: "nowrap"}}>
+                                                    <MarkGithubIcon size={24} />
+                                                    <span style={{marginLeft: "6px"}}>
+                                                        GitHub
+                                                    </span>
+                                                </span>
+                                            }></Card>
+                                        </a>
+                                    }
                                 </div>
                                 <div className="responsive-row">
-                                    <Card isLoading={isLoading} type="card" classes="bg-light-grey center" content={
+                                    <Card isLoading={isLoading} type="card" style={{zIndex: "3"}} classes="bg-light-grey center" content={
                                         <>
                                             <div className="row sm-row-gap flex">
-
                                                     {'tags' in item &&
-                                                        <div className="row sm-row-gap sm-column-gap flex">
+                                                        <div className="row sm-row-gap sm-column-gap flex" style={{width:"100%"}}>
                                                             <strong>Tags: </strong>
                                                             {item.tags?.split(",").map((tag) => (
                                                                 <Card key={tag} type="smCard" title={tag} isLoading={isLoading}></Card>
                                                             ))}
                                                         </div>
-                                                    }
+                                                    }                                                
                                                     <div className="column sm-column-gap sm-row-gap" style={{flexGrow: "1"}}>    
                                                         {'institution' in item &&
                                                             <Text type="h5" isLoading={isLoading} content={
@@ -97,7 +127,7 @@ const Item: React.FC<ItemProps> = ({
                                                                 </>
                                                             }></Text>
                                                     </div>
-
+                                                
                                                     {'resume' in item &&
                                                         <div className={`${style.resume}`}>
                                                             <Text type="h5" content={<><strong>Resumo: </strong> {item.resume}</>}></Text>
@@ -109,7 +139,7 @@ const Item: React.FC<ItemProps> = ({
                                             </div>
                                         </>
                                     }></Card>
-                                    <SeeMore componentId={componentId} seeMoreId={item.id} isActive={hoveredItemId === item.id} onClick={() => {
+                                    <SeeMore componentId={componentId} seeMoreId={item.id} classes='bg-grey' isActive={hoveredItemId === item.id} onClick={() => {
                                         dispatch(setSeeMoreClicked({seeMoreId: item.id, componentId: componentId}))
                                         }}></SeeMore>
                                 </div>
@@ -126,7 +156,7 @@ const Item: React.FC<ItemProps> = ({
                     <div className="column sm-row-gap">
                         <div className="row flex md-column-gap md-row-gap">
                             <Text type="h3" isLoading={true}></Text>
-                            <Card type="smCard" isLoading={true} classes="bg-light-blue"></Card>
+                            <Card type="smCard" isLoading={true} classes="bg-grey"></Card>
                             <Card type="smCard" isLoading={true} classes="bg-green"></Card>
                         </div>
                         <Card isLoading={true} type="card" classes="bg-light-grey center" content={

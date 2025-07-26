@@ -9,7 +9,7 @@ interface AboutMeProps {
 
 const AboutMe: React.FC<AboutMeProps> = ({
   text,
-  isLoading
+  isLoading,
 }) => {
   return (
     <Card isLoading={isLoading} title="Sobre mim" boxShadow={true} content={<Text isLoading={isLoading} type="p" content={text && text} />} />

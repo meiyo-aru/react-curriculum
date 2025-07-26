@@ -7,11 +7,13 @@ interface ExperiencesProps {
     personId?: number | null
     componentId?: string
     isLoading?: boolean
+    dataApi?: string
 }
 const Experiences: React.FC<ExperiencesProps> = ({
     personId,
     componentId = "Experiências",
-    isLoading
+    isLoading,
+    dataApi
 }) => {
     const [experiences, setExperiences] = useState<Experience[] | null>(null)
 
@@ -20,7 +22,7 @@ const Experiences: React.FC<ExperiencesProps> = ({
             try {
                 const startTimeStamp: number = Date.now();
 
-                const response = await axios.get("https://curriculum-data-api.onrender.com/get/experience?people_id=" + personId)
+                const response = await axios.get((dataApi && dataApi) + "/get/experience?people_id=" + personId)
 
                 const endTimeStamp: number = Date.now();
                 const result: number = endTimeStamp - startTimeStamp;

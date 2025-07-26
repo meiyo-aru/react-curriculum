@@ -7,12 +7,14 @@ interface AcademicTrainingProps {
     personId?: number | null
     componentId?: string
     isLoading?: boolean
+    dataApi?: string
 }
 
 const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
     personId,
     componentId = "Formações Acadêmicas",
-    isLoading
+    isLoading,
+    dataApi
 }) => {
     const [academicTrainings, setAcademicTraining] = useState<AcademicTraining[] | null>(null)
 
@@ -21,7 +23,7 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
             try {
                 const startTimeStamp: number = Date.now();
 
-                const response = await axios.get("https://curriculum-data-api.onrender.com/get/academic_training?people_id=" + personId)
+                const response = await axios.get((dataApi && dataApi) + "/get/academic_training?people_id=" + personId)
 
                 const endTimeStamp: number = Date.now();
 

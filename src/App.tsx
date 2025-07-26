@@ -14,6 +14,7 @@ function App() {
   const [person, setPeople] = useState<Person | null>(null);
   const [loadingPeople, setLoadingPeople] = React.useState<boolean>(true);
 
+  const dataApiURL = "http://localhost:8000"
   const handleLoadingPeople = (loading: boolean) => {
       setLoadingPeople(loading);
   }
@@ -23,7 +24,7 @@ function App() {
           try {
               const startTimeStamp: number = Date.now();
               
-              const response = await axios.get("https://curriculum-data-api.onrender.com/get/people?people_id=" + personId);
+              const response = await axios.get(dataApiURL + "/get/people?people_id=" + personId);
               
               const endTimeStamp: number = Date.now();
 
@@ -43,16 +44,16 @@ function App() {
   
 
   return (
-    <div className="responsive-row responsive-gap">
-        <div className="column responsive-gap" style={{flexGrow: "1"}}>
+    <div className="main-container">
+        <div className="main-container-a">
             <Header person={person && person} isLoading={loadingPeople}></Header>
             <AboutMe text={person && person.about} isLoading={loadingPeople}></AboutMe>
-            <AcademicTrainings personId={personId} isLoading={loadingPeople}></AcademicTrainings>
-            <Experiences personId={personId} isLoading={loadingPeople}></Experiences>
-            <Projects personId={personId} isLoading={loadingPeople}></Projects>
+            <AcademicTrainings dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></AcademicTrainings>
+            <Experiences dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></Experiences>
+            <Projects dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></Projects>
         </div>
-        <div className="column responsive-gap" style={{flexGrow: "1"}}>
-            <TechnicalSkills personId={personId} isLoading={loadingPeople}></TechnicalSkills>
+        <div className="main-container-b">
+            <TechnicalSkills dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></TechnicalSkills>
         </div>
     </div>
   )

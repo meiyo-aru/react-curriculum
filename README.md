@@ -99,7 +99,7 @@ Contribuições são bem-vindas\! Se você tiver sugestões, encontrou um bug ou
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a licença MIT (LICENSE.md).
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](./LICENSE.md) para mais detalhes.
 
 -----
 

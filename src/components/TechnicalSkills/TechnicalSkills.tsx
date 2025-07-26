@@ -107,10 +107,19 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
                 </div>
             }></Card>
         )
-    } /* else {
+    } else {
         return (
-            <Loading title={componentId}></Loading>
+            <Card title={componentId} boxShadow={true} isLoading={isLoading} classes="column sm-row-gap" content={
+                Array.from({length:4}).map(()=>(
+                    <Card type="card" isLoading={isLoading} classes="column sm-row-gap" content={
+                        <>
+                            <Text type="h5" isLoading={isLoading}></Text>
+                            <Text type="h5" isLoading={isLoading}></Text>
+                        </>
+                    }></Card>
+                ))
+            }></Card>
         )
-    } */
+    } 
 }
 export default TechnicalSkills

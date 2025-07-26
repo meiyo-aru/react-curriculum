@@ -1,13 +1,14 @@
-// src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import SeeMoreReducer from './features/SeeMore/SeeMoreSlice'; 
+import ShowMoreReducer from './features/ShowMoreButton/ShowMoreButtonSlice'
+
 export const store = configureStore({
   reducer: {
-    SeeMore: SeeMoreReducer, // Adiciona o reducer do contador ao store
+    SeeMore: SeeMoreReducer, 
+    ShowMore: ShowMoreReducer
   },
  
 });
 
-// Opcional: Inferir os tipos `RootState` e `AppDispatch` a partir do store
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

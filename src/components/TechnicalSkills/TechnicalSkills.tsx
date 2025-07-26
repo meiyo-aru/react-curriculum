@@ -4,9 +4,11 @@ import Card from "../Card/Card"
 import Text from "../Text/Text"
 import styles from "./TechnicalSkills.module.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import ShowMoreButton from "../../features/ShowMoreButton/ShowMoreButton"
+import { useDispatch, useSelector } from "react-redux"
+import type { RootState } from "../../store"
+import { setShowMoreClicked } from "../../features/ShowMoreButton/ShowMoreButtonSlice"
 
 
 interface TechnicalSkillsProps {
@@ -21,8 +23,12 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
     componentId = "Habilidades Técnicas",
 }) => {
     const [focused, setFocused] = useState<number|null>(null)
-    const [maxItems, setMaxItems] = useState<number>(5)
+    const maxItems = 6
     const [infoFocused, setInfoFocused] = useState<boolean>(false)
+/* 
+    Commented because multiple asynchronous requests are so much costly for free plan of Render,
+    then only one complex request is more interesting in this context
+*/
 /*     const [technicalSkill, setTechnicalSkill] = useState<TechnicalSkill[] | null>(null)
     
     useEffect(() => {
@@ -53,6 +59,8 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
         return [...technicalSkill].sort((a, b) => b.percent_level - a.percent_level);
     }, [technicalSkill]); 
 
+    const ShowMoreState = useSelector((state: RootState) => state.ShowMore)
+    const dispatch = useDispatch();
 
     if(!isLoading && technicalSkill) {
         return (
@@ -70,7 +78,7 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
                 } boxShadow={true} isLoading={isLoading} classes="column sm-row-gap" content={
                 <div className="flex column sm-row-gap">
                     {sortedTechnicalSkills.map((skill, index) => (
-                        index < maxItems &&
+                        (index < maxItems || ShowMoreState.componentId === componentId) &&
 
                             <Card type="card" boxShadow={true} onMouseEnter={() => {setFocused(skill.id)}} onMouseLeave={() => {setFocused(null)}} isLoading={isLoading} content={
                                 <>
@@ -93,10 +101,9 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
                             }></Card>
                         
                     ))}
-                    <span onClick={() => {setMaxItems(maxItems === 999 ? 5 : 999)}} className={`${styles.chevronDownIcon}`}>
-                        
-                        <FontAwesomeIcon icon={maxItems === 5 ? faChevronDown : faChevronUp} />
-                    </span>
+                    {sortedTechnicalSkills.length > maxItems &&
+                        <ShowMoreButton componentId={componentId} onClick={() => {dispatch(setShowMoreClicked({componentId: componentId}))}}></ShowMoreButton>
+                    }
                 </div>
             }></Card>
         )

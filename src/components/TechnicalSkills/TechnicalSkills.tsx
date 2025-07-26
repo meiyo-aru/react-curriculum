@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import type { TechnicalSkill } from "../../types/TechnicalSkill"
-import axios from "axios"
 import Card from "../Card/Card"
 import Text from "../Text/Text"
 import styles from "./TechnicalSkills.module.scss"
@@ -11,23 +10,21 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
 
 interface TechnicalSkillsProps {
-    personId: number | null
+    technicalSkill: TechnicalSkill[] | undefined
     isLoading?: boolean
     componentId?: string
-    dataApi?: string
 }
 
 const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
-    personId,
+    technicalSkill,
     isLoading,
     componentId = "Habilidades Técnicas",
-    dataApi
 }) => {
-    const [technicalSkill, setTechnicalSkill] = useState<TechnicalSkill[] | null>(null)
     const [focused, setFocused] = useState<number|null>(null)
     const [maxItems, setMaxItems] = useState<number>(5)
     const [infoFocused, setInfoFocused] = useState<boolean>(false)
-
+/*     const [technicalSkill, setTechnicalSkill] = useState<TechnicalSkill[] | null>(null)
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -47,8 +44,8 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
             }
         }
         fetchData()
-    }, [personId])
-    
+    }, [personId, dataApi])
+ */    
     const sortedTechnicalSkills = useMemo(() => {
         if (!technicalSkill) {
         return []; 

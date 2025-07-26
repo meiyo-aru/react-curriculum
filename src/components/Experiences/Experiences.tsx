@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react"
 import type { Experience } from "../../types/Experience"
-import axios from "axios"
 import Item from "../Item/Item"
 
 interface ExperiencesProps {
-    personId?: number | null
+    experiences: Experience[] | undefined
     componentId?: string
     isLoading?: boolean
-    dataApi?: string
 }
 const Experiences: React.FC<ExperiencesProps> = ({
-    personId,
+    experiences,
     componentId = "Experiências",
     isLoading,
-    dataApi
 }) => {
-    const [experiences, setExperiences] = useState<Experience[] | null>(null)
+/*     const [experiences, setExperiences] = useState<Experience[] | null>(null)
 
     useEffect(() => {
         const  fetchData = async () => {
@@ -37,9 +33,9 @@ const Experiences: React.FC<ExperiencesProps> = ({
         }
 
         fetchData();
-    }, [personId])
+    }, [personId, dataApi])
 
-    return (
+ */    return (
         <Item items={experiences} componentId={componentId} isLoading={isLoading}></Item>
     )
 }

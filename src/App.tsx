@@ -24,7 +24,7 @@ function App() {
           try {
               const startTimeStamp: number = Date.now();
               
-              const response = await axios.get(dataApiURL + "/get/people?people_id=" + personId);
+              const response = await axios.get(dataApiURL + "/get?people_id=" + personId);
               
               const endTimeStamp: number = Date.now();
 
@@ -47,13 +47,13 @@ function App() {
     <div className="main-container">
         <div className="main-container-a">
             <Header person={person && person} isLoading={loadingPeople}></Header>
-            <AboutMe text={person && person.about} isLoading={loadingPeople}></AboutMe>
-            <AcademicTrainings dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></AcademicTrainings>
-            <Experiences dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></Experiences>
-            <Projects dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></Projects>
+            <AboutMe text={person?.about} isLoading={loadingPeople}></AboutMe>
+            <AcademicTrainings academicTrainings={person?.academic_trainings} isLoading={loadingPeople}></AcademicTrainings>
+            <Experiences experiences={person?.experiences} isLoading={loadingPeople}></Experiences>
+            <Projects projects={person?.projects_rel} isLoading={loadingPeople}></Projects>
         </div>
         <div className="main-container-b">
-            <TechnicalSkills dataApi={dataApiURL} personId={personId} isLoading={loadingPeople}></TechnicalSkills>
+            <TechnicalSkills technicalSkill={person?.skills} isLoading={loadingPeople}></TechnicalSkills>
         </div>
     </div>
   )

@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react"
 import type { Project } from "../../types/Project"
-import axios from "axios"
 import Item from "../Item/Item"
 
 interface ProjectsProps {
-    personId?: number | null
+    projects: Project[] | undefined
     componentId?: string
     isLoading?: boolean
-    dataApi?: string
 }
 const Projects: React.FC<ProjectsProps> = ({
-    personId,
+    projects,
     componentId = "Projetos",
     isLoading,
-    dataApi
 }) => {
-    const [projects, setProjects] = useState<Project[] | null>(null)
+/*     const [projects, setProjects] = useState<Project[] | null>(null)
 
     useEffect(() => {
         const  fetchData = async () => {
@@ -36,8 +32,8 @@ const Projects: React.FC<ProjectsProps> = ({
         }
 
         fetchData();
-    }, [personId])
-
+    }, [personId, dataApi])
+ */
     return (
         <Item items={projects} componentId={componentId} isLoading={isLoading}></Item>
     )

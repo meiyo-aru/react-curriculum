@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react"
 import type {AcademicTraining} from "../../types/AcademicTraining"
-import axios from "axios"
 import Item from "../Item/Item"
 
 interface AcademicTrainingProps {
-    personId?: number | null
+    academicTrainings: AcademicTraining[] | undefined
     componentId?: string
     isLoading?: boolean
-    dataApi?: string
 }
 
 const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
-    personId,
+    academicTrainings,
     componentId = "Formações Acadêmicas",
-    isLoading,
-    dataApi
+    isLoading
 }) => {
-    const [academicTrainings, setAcademicTraining] = useState<AcademicTraining[] | null>(null)
+/*     const [academicTrainings, setAcademicTraining] = useState<AcademicTraining[] | null>(null)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,10 +34,10 @@ const AcademicTrainings: React.FC<AcademicTrainingProps> = ({
             }
         } 
         fetchData()
-    }, [personId])
+    }, [personId, dataApi])  */
 
     return (
-        <Item items={academicTrainings} componentId={componentId} isLoading={isLoading}></Item>
+        <Item items={academicTrainings && academicTrainings} componentId={componentId} isLoading={isLoading}></Item>
     )
 
 

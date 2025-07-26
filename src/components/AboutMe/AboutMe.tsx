@@ -3,7 +3,7 @@ import React from "react";
 import Text from "../Text/Text";
 
 interface AboutMeProps {
-  text: string | null
+  text: string | undefined
   isLoading?: boolean
 }
 

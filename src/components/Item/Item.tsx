@@ -13,7 +13,7 @@ import style from "./Item.module.scss"
 import { MarkGithubIcon } from '@primer/octicons-react'
 
 interface ItemProps {
-    items: AcademicTraining[] | Experience[] | Project[] | null
+    items: AcademicTraining[] | Experience[] | Project[] | undefined
     componentId: string
     isLoading?: boolean
 }

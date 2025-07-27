@@ -12,7 +12,7 @@ function App() {
     const [person, setPeople] = useState<Person | null>(null);
     const [loadingPeople, setLoadingPeople] = React.useState<boolean>(true);
 
-    const dataApiURL = "https://curriculum-data-api.onrender.com"
+    const dataApiURL = "http://localhost:8000"
     const handleLoadingPeople = (loading: boolean) => {
         setLoadingPeople(loading);
     }

@@ -50,6 +50,16 @@ Certifique-se de ter as seguintes ferramentas instaladas:
     # ou
     yarn install
     ```
+3.  **Configuração da API:**
+    Este projeto espera que uma **API RESTful de currículos** esteja rodando em um endereço acessível.
+
+      * Crie um arquivo `.env` na raiz do projeto (se necessário) e defina a URL da sua API:
+        ```
+        API_URL=http://localhost:8000/api
+        ```
+      * Certifique-se de que a API esteja funcionando e acessível.
+ 
+---
 
 ### Executando o Projeto
 

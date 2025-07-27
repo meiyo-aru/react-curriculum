@@ -37,7 +37,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
   * Node.js (versão LTS recomendada)
   * npm ou Yarn
 
-### Instalação
+### Configuração
 
 1.  Clone este repositório:
     ```bash
@@ -50,6 +50,16 @@ Certifique-se de ter as seguintes ferramentas instaladas:
     # ou
     yarn install
     ```
+3.  **Configuração da API:**
+    Este projeto espera que uma **API RESTful de currículos** esteja rodando em um endereço acessível.
+
+      * Crie um arquivo `.env` na raiz do projeto (se necessário) e defina a URL da sua API:
+        ```
+        API_URL=http://localhost:8000/api
+        ```
+      * Certifique-se de que a API esteja funcionando e acessível.
+ 
+---
 
 ### Executando o Projeto
 
@@ -107,6 +117,6 @@ Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](.
 
 Pedro Arthur Gregório Abreu - pedro.agb2004@gmail.com
 
-Link do Projeto: `https://react-curriculum-render-api.vercel.app/`
+Link do Projeto: `https://react-curriculum-render.vercel.app/`
 
 -----

@@ -73,7 +73,7 @@ O aplicativo estará disponível em `http://localhost:3000` (ou outra porta disp
 
 -----
 
-## 💡 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 react-curriculum-render/
@@ -95,7 +95,7 @@ react-curriculum-render/
 
 -----
 
-## 🤝 Contribuição
+## Contribuição
 
 Contribuições são bem-vindas\! Se você tiver sugestões, encontrou um bug ou quer adicionar um recurso:
 
@@ -107,15 +107,15 @@ Contribuições são bem-vindas\! Se você tiver sugestões, encontrou um bug ou
 
 -----
 
-## 📄 Licença
+## Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](./LICENSE.md) para mais detalhes.
 
 -----
 
-## 📫 Contato
+## Contato
 
-Pedro Arthur Gregório Abreu - pedro.agb2004@gmail.com
+Pedro Arthur Gregorio Abreu - [pedro.agb2004@gmail.com](mailto:pedro.agb2004@gmail.com)
 
 Link do Projeto: `https://react-curriculum-render.vercel.app/`
 

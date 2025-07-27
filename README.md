@@ -1,124 +1,124 @@
-
 # React Curriculum Render
-Um serviço Server-Side Rendering (SSR) robusto e otimizado, construído com **React**, gerenciamento de estado via **Redux**, estilização com **SCSS** e focado na eficiência de dados através de uma **única requisição** à API.
 
------
+A robust and optimized Server-Side Rendering (SSR) service, built with **React**, state management via **Redux**, styling with **SCSS**, and focused on data efficiency through a **single API request**.
 
-## Tecnologias Utilizadas
+---
 
-Este projeto foi desenvolvido utilizando as seguintes tecnologias principais:
+## Technologies Used
 
-  * **React:** Biblioteca JavaScript para construção de interfaces de usuário reativas e componentizadas.
-  * **Redux:** Biblioteca para gerenciamento de estado global da aplicação, garantindo previsibilidade e facilidade de depuração.
-  * **Server-Side Rendering (SSR):** Renderização inicial do React no servidor, proporcionando melhor performance de carregamento, SEO aprimorado e uma experiência de usuário mais rápida.
-  * **Vite:** Otimiza o processo de desenvolvimento da aplicação como um todo.
-  * **SCSS (Sass):** Pré-processador CSS que adiciona recursos como variáveis, mixins e aninhamento, tornando a estilização mais organizada e escalável.
+This project was developed using the following main technologies:
 
------
+* **React:** JavaScript library for building reactive and component-based user interfaces.
+* **Redux:** Library for global application state management, ensuring predictability and ease of debugging.
+* **Server-Side Rendering (SSR):** Initial React rendering on the server, providing better loading performance, improved SEO, and a faster user experience.
+* **Vite:** Optimizes the overall application development process.
+* **SCSS (Sass):** CSS pre-processor that adds features like variables, mixins, and nesting, making styling more organized and scalable.
 
-## Principais Características
+---
 
-  * **Performance Otimizada:** Graças ao SSR, as páginas carregam mais rapidamente e o conteúdo é visível quase instantaneamente.
-  * **Gerenciamento de Estado Centralizado:** O Redux oferece uma arquitetura clara para lidar com o estado complexo da aplicação.
-  * **Estilização Eficiente:** SCSS permite um desenvolvimento de estilos modular e de fácil manutenção.
-  * **Economia de Largura de Banda:** A requisição única à API elimina o *overhead* de múltiplas chamadas HTTP, crucial para o plano gratuito do Vercel e para usuários com conexões limitadas.
-  * **SEO Amigável:** Conteúdo já renderizado no HTML facilita a indexação por motores de busca.
+## Key Features
 
------
+* **Optimized Performance:** Thanks to SSR, pages load faster and content is visible almost instantly.
+* **Centralized State Management:** Redux offers a clear architecture for handling complex application state.
+* **Efficient Styling:** SCSS allows for modular and easily maintainable style development.
+* **Bandwidth Saving:** The single API request eliminates the overhead of multiple HTTP calls, crucial for Vercel's free tier and for users with limited connections.
+* **SEO Friendly:** Pre-rendered content in HTML facilitates indexing by search engines.
 
-## Como Rodar o Projeto Localmente
+---
 
-Siga estes passos para configurar e executar o projeto em sua máquina:
+## How to Run the Project Locally
 
-### Pré-requisitos
+Follow these steps to set up and run the project on your machine:
 
-Certifique-se de ter as seguintes ferramentas instaladas:
+### Prerequisites
 
-  * Node.js (versão LTS recomendada)
-  * npm ou Yarn
+Make sure you have the following tools installed:
 
-### Configuração
+* Node.js (LTS version recommended)
+* npm or Yarn
 
-1.  Clone este repositório:
+### Setup
+
+1.  Clone this repository:
     ```bash
-    git clone https://github.com/blink992/react_curriculum_render.git
+    git clone [https://github.com/blink992/react_curriculum_render.git](https://github.com/blink992/react_curriculum_render.git)
     cd react_curriculum_render
     ```
-2.  Instale as dependências:
+2.  Install dependencies:
     ```bash
     npm install
-    # ou
+    # or
     yarn install
     ```
-3.  **Configuração da API:**
-    Este projeto espera que uma **API RESTful de currículos** esteja rodando em um endereço acessível.
+3.  **API Configuration:**
+    This project expects a **RESTful resume API** to be running at an accessible address.
 
-      * Crie um arquivo `.env` na raiz do projeto (se necessário) e defina a URL da sua API:
+    * Create a `.env` file in the project root (if necessary) and define your API's URL:
         ```
         API_URL=http://localhost:8000/api
         ```
-      * Certifique-se de que a API esteja funcionando e acessível.
- 
+    * Ensure the API is running and accessible.
+
 ---
 
-### Executando o Projeto
+### Running the Project
 
-Para iniciar o servidor de desenvolvimento:
+To start the development server:
 
 ```bash
 npm run dev
-```
+````
 
-O aplicativo estará disponível em `http://localhost:3000` (ou outra porta disponível).
+The application will be available at `http://localhost:3000` (or another available port).
 
 -----
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 react-curriculum-render/
 ├── src/
-│   ├── components/         # Componentes React reutilizáveis
-│   ├── features/           # Componentes que interagem com o Redux, isto é, tem estado global
-│   ├── static/             # Arquivos SCSS globais e de componentes
+│   ├── components/         # Reusable React components
+│   ├── features/           # Components that interact with Redux, i.e., have global state
+│   ├── static/             # Global and component SCSS files
 │   │   └── scss/
-│   │       ├── partials/   # Partials do SCSS
-│   │       └── main.scss   # Arquivo main do SCSS que importa todos os partials
-│   ├── types/              # Tipos TypeScript, tipam os objetos retornados pela API de dados
-│   ├── App.tsx             # Componente principal da aplicação
-|   ├── custom.d.ts         # Arquivo de declaração de tipos
-|   ├── store.ts            # Store do redux
-│   └── main.tsx            # Ponto de entrada do cliente
-├── package.json            # Dependências e scripts do projeto
+│   │       ├── partials/   # SCSS partials
+│   │       └── main.scss   # Main SCSS file that imports all partials
+│   ├── types/              # TypeScript types, typing objects returned by the data API
+│   ├── App.tsx             # Main application component
+|   ├── custom.d.ts         # Type declaration file
+|   ├── store.ts            # Redux store
+│   └── main.tsx            # Client entry point
+├── package.json            # Project dependencies and scripts
 └── README.md
 ```
 
 -----
 
-## Contribuição
+## Contribution
 
-Contribuições são bem-vindas\! Se você tiver sugestões, encontrou um bug ou quer adicionar um recurso:
+Contributions are welcome\! If you have suggestions, found a bug, or want to add a feature:
 
-1.  Faça um fork do projeto.
-2.  Crie uma nova branch (`git checkout -b feature/minha-feature`).
-3.  Faça suas alterações e commit (`git commit -am 'feat: Adiciona nova funcionalidade X'`).
-4.  Envie para a branch (`git push origin feature/minha-feature`).
-5.  Abra um Pull Request.
-
------
-
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](./LICENSE.md) para mais detalhes.
+1.  Fork the project.
+2.  Create a new branch (`git checkout -b feature/my-feature`).
+3.  Make your changes and commit (`git commit -am 'feat: Add new feature X'`).
+4.  Push to the branch (`git push origin feature/my-feature`).
+5.  Open a Pull Request.
 
 -----
 
-## Contato
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](https://www.google.com/search?q=./LICENSE.md) file for more details.
+
+-----
+
+## Contact
 
 Pedro Arthur Gregorio Abreu - [pedro.agb2004@gmail.com](mailto:pedro.agb2004@gmail.com)
 
-Link do Projeto: [`https://react-curriculum-render.vercel.app/`](https://react-curriculum-render.vercel.app)
+Project Link: [`https://react-curriculum-render.vercel.app/`](https://react-curriculum-render.vercel.app)
 
-Link do GitHub: [`https://github.com/meiyo-aru/react-curriculum-render`](https://github.com/meiyo-aru/react-curriculum-render)
+GitHub Link: [`https://github.com/meiyo-aru/react-curriculum-render`](https://github.com/meiyo-aru/react-curriculum-render)
 
 -----

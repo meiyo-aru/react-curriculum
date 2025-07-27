@@ -37,7 +37,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
   * Node.js (versão LTS recomendada)
   * npm ou Yarn
 
-### Instalação
+### Configuração
 
 1.  Clone este repositório:
     ```bash

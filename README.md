@@ -107,6 +107,6 @@ Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](.
 
 Pedro Arthur Gregório Abreu - pedro.agb2004@gmail.com
 
-Link do Projeto: `https://react-curriculum-render-api.vercel.app/`
+Link do Projeto: `https://react-curriculum-render.vercel.app/`
 
 -----

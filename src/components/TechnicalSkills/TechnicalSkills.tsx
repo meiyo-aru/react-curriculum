@@ -80,7 +80,7 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
                     {sortedTechnicalSkills.map((skill, index) => (
                         (index < maxItems || ShowMoreState.componentId === componentId) &&
 
-                            <Card type="card" boxShadow={true} onMouseEnter={() => {setFocused(skill.id)}} onMouseLeave={() => {setFocused(null)}} isLoading={isLoading} content={
+                            <Card key={index} type="card" boxShadow={true} onMouseEnter={() => {setFocused(skill.id)}} onMouseLeave={() => {setFocused(null)}} isLoading={isLoading} content={
                                 <>
                                     <Text type="h5" content={
                                         <div className="column">
@@ -110,8 +110,8 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
     } else {
         return (
             <Card title={componentId} boxShadow={true} isLoading={isLoading} classes="column sm-row-gap" content={
-                Array.from({length:4}).map(()=>(
-                    <Card type="card" isLoading={isLoading} classes="column sm-row-gap" content={
+                Array.from({length:4}).map((item, index)=>(
+                    <Card key={index} type="card" isLoading={isLoading} classes="column sm-row-gap" content={
                         <>
                             <Text type="h5" isLoading={isLoading}></Text>
                             <Text type="h5" isLoading={isLoading}></Text>

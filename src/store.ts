@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import SeeMoreReducer from './features/SeeMore/SeeMoreSlice'; 
 import ShowMoreReducer from './features/ShowMoreButton/ShowMoreButtonSlice'
-
+import Person from './features/Person/PersonSlice'
 export const store = configureStore({
   reducer: {
     SeeMore: SeeMoreReducer, 
-    ShowMore: ShowMoreReducer
+    ShowMore: ShowMoreReducer,
+    Person: Person
   },
  
 });

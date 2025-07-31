@@ -1,87 +1,104 @@
-import { useSelector } from "react-redux"
-import type { Person } from "../../types/Person"
+import { useDispatch, useSelector } from "react-redux"
 import AboutMe from "../AboutMe/AboutMe"
 import Header from "../Header/Header"
 import Item from "../Item/Item"
 import Languages from "../Languages/Languages"
 import TechnicalSkills from "../TechnicalSkills/TechnicalSkills"
 import type { RootState } from "../../store"
+import "meiyo-react-components/dist/meiyo-react-components.css"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { setPerson } from "../../features/Person/PersonSlice"
+import Card from "../Card/Card"
 
-interface CurriculumProps {
-    apiURL: string,
-}
-
-export const Curriculum: React.FC<CurriculumProps> = ({ apiURL }) => {
-    const personId = useSelector((state: RootState) => state.Person.personId)
-    const [person, setPerson] = useState<Person | null>(null)
-    const [loadingPerson, setLoadingPerson] = useState<boolean>(true)
+export const Curriculum: React.FC = () => {
+    const person = useSelector((state: RootState) => state.Person.person)
+    const [validToken, setValidToken] = useState<boolean>(false)
+    const dispatch = useDispatch()
+    const apiURL = import.meta.env.VITE_API_URL
+    
+    const {token} = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const fetchData = async () =>{
+        const fetchValidateToken = async () => {
             try {
                 const startTimeStamp: number = Date.now();
-                console.log(apiURL + "/get?people_id=" + personId)
-                const response = await axios.get(apiURL + "/get?people_id=" + personId);
+                
+                const response = await axios.post(apiURL + "/post/curriculum_by_token", {"token" : token});
                 
                 const endTimeStamp: number = Date.now();
-    
+
                 const result: number = endTimeStamp - startTimeStamp;
-                console.log(`Total request time for get full person data: ${result}ms`);
-    
+                console.log(`Total request time for curriculum by token requisition: ${result}ms`);
+
                 if(response){
-                    setPerson(response.data)
-                    setLoadingPerson(false)
-                } else {
-                    setPerson(null)
-                    setLoadingPerson(true)
+                    dispatch(setPerson({person: response.data}))
+                    setValidToken(true)
                 }
             } catch (error) {
-                console.error("Error fetching for Person data:", error);
+                console.error("Error fetching for authenticate token:", error);
+                setValidToken(false)
             }
         }
-        fetchData()
-    }, [personId, apiURL])
+        if(token) {
+            fetchValidateToken()
+        }
+    }, [token, navigate])
 
     return (
-        <div className="main-container">
-            <div className="main-container-a">
-                <Header person={person && person} isLoading={loadingPerson}></Header>
-                <AboutMe text={person?.about} isLoading={loadingPerson}></AboutMe>
-                {person?.academic_trainings.length ?
-                    <Item items={person?.academic_trainings} componentId={"Formações Acadêmicas"} isLoading={loadingPerson}></Item>
-                    :
-                    null
-                }
-                {person?.experiences.length ?
-                    <Item items={person?.experiences} componentId={"Experiências"} isLoading={loadingPerson}></Item>
-                    :
-                    null
-                }
-                {person?.projects_rel.length ?
-                    <Item items={person?.projects_rel} componentId={"Projetos"} isLoading={loadingPerson}></Item>
-                    :
-                    null
-                }
-                {person?.courses.length ?
-                    <Item items={person?.courses} componentId={"Cursos e Certificações"} isLoading={loadingPerson}></Item>
-                    :
-                    null
+        validToken || person ?
+            <div className="main-container">
+                <div className="main-container-a" style={person?.skills.length && person?.langs.length ? undefined : {width: "100%"}}>
+                    <Header person={person && person} isLoading={person ? false : true}></Header>
+                    <AboutMe text={person?.about} isLoading={person ? false : true}></AboutMe>
+                    {person?.academic_trainings.length ?
+                        <Item items={person?.academic_trainings} componentId={"Formações Acadêmicas"} isLoading={person ? false : true}></Item>
+                        :
+                        null
+                    }
+                    {person?.experiences.length ?
+                        <Item items={person?.experiences} componentId={"Experiências"} isLoading={person ? false : true}></Item>
+                        :
+                        null
+                    }
+                    {person?.projects_rel.length ?
+                        <Item items={person?.projects_rel} componentId={"Projetos"} isLoading={person ? false : true}></Item>
+                        :
+                        null
+                    }
+                    {person?.courses.length ?
+                        <Item items={person?.courses} componentId={"Cursos e Certificações"} isLoading={person ? false : true}></Item>
+                        :
+                        null
+                    }
+                </div>
+                {
+                    person?.skills.length && person?.langs.length ?
+                        <div className="main-container-b">
+                            {person?.skills.length ?
+                                <TechnicalSkills technicalSkill={person?.skills} isLoading={person ? false : true}></TechnicalSkills>
+                                :
+                                null
+                            }
+                            {person?.langs.length ?
+                                <Languages languages={person?.langs} isLoading={person ? false : true}></Languages>
+                                :
+                                null
+                            }
+                        </div>
+                        :
+                        null
                 }
             </div>
-            <div className="main-container-b">
-                {person?.skills.length ?
-                    <TechnicalSkills technicalSkill={person?.skills} isLoading={loadingPerson}></TechnicalSkills>
-                    :
-                    null
-                }
-                {person?.langs.length ?
-                    <Languages languages={person?.langs} isLoading={loadingPerson}></Languages>
-                    :
-                    null
-                }
-            </div>
-        </div>
+            :
+            <Card type="alert" content={
+                <>
+                    Token inválido!
+                    <br />
+                    Faça login ou acesse o endereço com um token válido!
+                </>
+            }></Card>
     )
 }

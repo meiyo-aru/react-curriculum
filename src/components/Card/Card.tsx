@@ -8,7 +8,7 @@ import clsx from "clsx";
 interface CardProps {
     title?: string | React.ReactNode |null
     content?: React.ReactNode | null
-    type?: "smCard" | "card" | "section" | "header"
+    type?: "smCard" | "card" | "section" | "header" | "alert"
     boxShadow?: boolean
     isLoading?: boolean
     classes?: string
@@ -34,6 +34,7 @@ const Card: React.FC<CardProps> = ({
   const cardClass = clsx(styles.card, "bg-light", boxShadow && "hover-shadow flex-grow", classes);
   const sectionClass = clsx(classes, styles.card, "bg-white", boxShadow && "hover-shadow flex-grow");
   const headerClass = clsx(classes, styles.header, boxShadow && "hover-shadow flex-grow");
+  const alertClass = clsx(classes, styles.alert, "flex-grow");
 
   switch (type) {
     case "smCard": 
@@ -50,6 +51,13 @@ const Card: React.FC<CardProps> = ({
     case "card":
       return (
         <div style={style && style} className={`${cardClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>
+          {content && content}
+        </div>
+      )
+
+    case "alert":
+      return (
+        <div style={style && style} className={`${alertClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>
           {content && content}
         </div>
       )

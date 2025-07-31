@@ -5,7 +5,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 function App() {
     return (
         <>
-        <BrowserRouter>
+        <BrowserRouter basename="/src">
             <Routes>
                 <Route path="/login" element={<SearchPerson></SearchPerson>}></Route>
                 <Route path="/curriculum/:token" element={<Curriculum></Curriculum>}></Route>

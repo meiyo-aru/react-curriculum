@@ -67,11 +67,11 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
             <Card title={
                     <>
                         {componentId}
-                        <h3 style={{float: "right", color: "#4b678f", cursor: "pointer"}} onClick={() => {setInfoFocused(infoFocused ? false : true)}}>
+                        <span style={{float: "right", color: "#4b678f", cursor: "pointer"}} onClick={() => {setInfoFocused(infoFocused ? false : true)}}>
                             <FontAwesomeIcon icon={faCircleInfo} />
-                        </h3>
+                        </span>
                         <Card type="card" isLoading={isLoading} classes={`${infoFocused ? styles.active : styles.inactive} ${styles.info} bg-light-grey`} content={
-                            <h5>Habilidades técnicas são capacidades ou aptidões que um profissional possui. A barra de aptidão mensura o nível de confiança, experiência prática e conhecimento sobre o assunto.</h5>
+                            <span>Habilidades técnicas são capacidades ou aptidões que um profissional possui. A barra de aptidão mensura o nível de confiança, experiência prática e conhecimento sobre o assunto.</span>
                         }>
                         </Card> 
                     </>

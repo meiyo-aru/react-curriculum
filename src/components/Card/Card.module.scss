@@ -4,26 +4,26 @@
 .card {
     text-align: left;
     position: relative;
-    @media only screen and (min-width: 729px) {
+    @media   (min-width: 729px) {
         @include mixins.card-style($bg-color: white, $padding: 10px 18px, $radius: 5px);
     }
-    @media only screen and (min-width:426px) and (max-width: 728px) {
+    @media   (min-width:426px) and (max-width: 728px) {
         @include mixins.card-style($padding: 10px 15px, $radius: 5px);
     }
-    @media only screen and (max-width: 425px) {
+    @media   (max-width: 425px) {
         @include mixins.card-style($padding: 10px 2px);
     }
 }
 
 .card .card {
     text-align: left;
-    @media only screen and (min-width: 729px) {
+    @media   (min-width: 729px) {
         @include mixins.card-style($bg-color: white, $padding: 10px 18px, $radius: 5px);
     }
-    @media only screen and (min-width:426px) and (max-width: 728px) {
+    @media   (min-width:426px) and (max-width: 728px) {
         @include mixins.card-style($padding: 10px 15px, $radius: 5px);
     }
-    @media only screen and (max-width: 425px) {
+    @media   (max-width: 425px) {
         @include mixins.card-style($padding: 10px 10px, $radius: 5px);
     }
 }
@@ -34,10 +34,10 @@
     height: max-content;
     width: max-content;
     text-align: left;
-    @media only screen and (min-width: 728px) {
+    @media   (min-width: 728px) {
         @include mixins.card-style($padding: 6px 12px, $radius: 5px);
     }
-    @media only screen and (max-width: 728px) {
+    @media   (max-width: 728px) {
         @include mixins.card-style($padding: 5px 10px, $radius: 5px);
     }
 }
@@ -62,4 +62,11 @@
 }
 .flex-grow {
     flex-grow: 1;
+}
+.alert {
+    background-color: rgb(228 74 74);
+    border: 3px double #ffc8c8;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
 }

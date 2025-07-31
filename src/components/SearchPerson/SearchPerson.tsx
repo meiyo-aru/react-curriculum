@@ -5,104 +5,111 @@ import "meiyo-react-components/dist/meiyo-react-components.css"
 import style from "./SearchPerson.module.scss"
 import { useDispatch } from "react-redux";
 import { setPerson } from "../../features/Person/PersonSlice";
+import Card from "../Card/Card";
+import { useNavigate } from "react-router-dom";
 
-interface SearchPersonProps {
-    apiURL: string
-}
-export const SearchPerson: React.FC<SearchPersonProps> = ({apiURL}) => {
-
-    const [personSelect, setPersonSelect] = useState<[{"id": number, "name": string}] | null>(null)
-    const [personInput, setPersonInput] = useState<string | null>(null);
-    const [personId, setPersonId] = useState<number | null>(null)
-
-    const dispatch = useDispatch();
-
+export const SearchPerson: React.FC = () => {
+    const [username, setUsername] = useState<string | null>(null);
+    const [usernameExists, setUsernameExists] = useState<boolean>(false)
+    const [personAuthenticated, setPersonAuthenticated] = useState<boolean | null>(null)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const apiURL = import.meta.env.VITE_API_URL
+    console.log(apiURL)
+    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.currentTarget.value)
+    }
+ 
+    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        if(usernameExists){
+            const password = event.currentTarget.password.value as string
+            const fetchAuthenticate = async () => {
+                try {
+                    const startTimeStamp: number = Date.now();
+                    
+                    const response = await axios.post(apiURL + "/post/curriculum", {"username" : username, "password" : password});
+                    
+                    const endTimeStamp: number = Date.now();
+    
+                    const result: number = endTimeStamp - startTimeStamp;
+                    console.log(`Total request time for authenticate requisition: ${result}ms`);
+    
+                    if(response){
+                        setPersonAuthenticated(true)
+                        dispatch(setPerson({person: response.data}))
+                        navigate("/curriculum/" + response.data.token)
+                    }
+                } catch (error) {
+                    console.error("Error fetching for authenticate requisition:", error);
+                    setPersonAuthenticated(false)
+                }
+            }
+            if(usernameExists && password?.trim()) {
+                fetchAuthenticate();
+            }
+    
+        }
+    }
+    
     useEffect(() => {
-        const fetchPerson = async () => {
+        const fetchVerifyUsername = async () => {
             try {
                 const startTimeStamp: number = Date.now();
                 
-                const response = await axios.get(apiURL + "/get/people_id?people_name=" + personInput);
+                const response = await axios.get(apiURL + "/get/verify_username?username=" + username);
                 
                 const endTimeStamp: number = Date.now();
 
                 const result: number = endTimeStamp - startTimeStamp;
-                console.log(`Total request time for searching person_id: ${result}ms`);
+                console.log(`Total request time for verify username: ${result}ms`);
 
-                if(response){
-                    setPersonSelect(response.data)
-                } else {
-                    setPersonSelect(null)
-                }
+                setUsernameExists(response.data)
+
             } catch (error) {
-                console.error("Error fetching for Person data:", error);
+                console.error("Error fetching for verify username:", error);
             }
         }
-        if(personInput?.trim()) {
-            fetchPerson();
-        } else {
-            setPersonSelect(null)
-        }
-    }, [personInput, apiURL]);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPersonInput(event.currentTarget.value)
-    }
-    const handleSelectPerson = (id:number, name:string) => {
-        const select = document.getElementById("selectContainer") as HTMLDivElement
-        select.classList.add(style.inactive)
-
-        const input = document.getElementById("inputPerson") as HTMLInputElement
-        if(input) {
-            input.value = name
-            setPersonId(id)
-        }
-    }
-    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        if(personId){
-            dispatch(setPerson({personId: personId}))
-        }
-    }
-    const handleInputFocus = () => {
-        const select = document.getElementById("selectContainer") as HTMLDivElement
-        select.classList.remove(style.inactive)
-    }
+        fetchVerifyUsername()
+    }, [username, apiURL]);
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            <div className="row flex sm-column-gap">
-                <div className="column sm-row-gap">
-                    <div className="column flex md-row-gap" style={{width: "40rem"}}>
-                        <span className="column flex">
-                            <label htmlFor="inputPerson"><strong>Nome:</strong></label>
-                            <input type="text" name="person" className={style.input} onChange={(event) => {handleInputChange(event); handleInputFocus()}} id="inputPerson" placeholder="Digite um nome para gerar o currículo"></input>
-                            <div id="selectContainer" className={`column flex ${style.selectContainer} ${style.inactive}`}>
-                                {personSelect ?
-                                        personSelect?.map((person, index) => (
-                                            index < 10 &&
-                                            <div key={index} className={style.selectItem} onClick={() => {handleSelectPerson(person.id, person.name)}}>{person.name}</div>
-                                        ))
-                                    :
-                                        <div>Nenhum resultado encontrado...</div>
+        <Card title="React Curriculum Render" style={{padding: "20px 20px"}} boxShadow content={
+            <form onSubmit={handleFormSubmit}>
+                <div className="row flex sm-column-gap">
+                    <div className="column sm-row-gap">
+                        <div className="column flex md-row-gap" style={{width: "40rem"}}>
+                            <span className="column flex">
+                                <label htmlFor="username"><strong>Nome de usuário:</strong></label>
+                                <input type="text" name="username" className={style.input} onChange={(event) => {handleUsernameChange(event)}} id="username" placeholder="Digite seu nome de usuário"></input>
+                                {
+                                    (!usernameExists && username?.trim()) &&
+                                        <span className={style.alert}>
+                                            *Nome de usuário não existe!
+                                        </span>
                                 }
-                            </div>
-                        </span>
-                        {
-                            personId &&
-                                <>
-                                    <span className="column flex">
-                                        <label htmlFor="inputPassword"><strong>Senha: </strong></label>
-                                        <input id="inputPassword" name="password" type="password" className={style.input} />
-                                    </span>
-                                    <Button text="Continuar" type="primary" size="md" shadow></Button>
-                                </>
-                        }
-                    </div>
+                            </span>
+                            <span className="column flex">
+                                <label htmlFor="password"><strong>Senha: </strong></label>
+                                <input id="password" name="password" placeholder="Digite sua senha" type="password" className={style.input} />
+                                
+                                {
+                                    personAuthenticated === false &&
+                                        <>
+                                            <span className={style.alert}>
+                                                *Senha incorreta!
+                                            </span>
+                                        </>
+                                }
+                            </span>
+                            <Button text="Continuar" type="primary" size="md" shadow></Button>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        }></Card>
     )
 
 }

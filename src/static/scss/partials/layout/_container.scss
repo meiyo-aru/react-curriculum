@@ -1,18 +1,18 @@
 body {
     margin: 0px;
-    @media only screen and (min-width: 1921px){
+    @media   (min-width: 1921px){
         padding: 15px 25vw;
     }
-    @media only screen and (min-width: 1441px) and (max-width: 1920px){
+    @media   (min-width: 1441px) and (max-width: 1920px){
         padding: 15px 20vw;
     }
-    @media only screen and (min-width: 729px) and (max-width: 1440px){
+    @media   (min-width: 729px) and (max-width: 1440px){
         padding: 10px 2vw;
     }
-    @media only screen and (min-width: 426px) and (max-width: 728px){
+    @media   (min-width: 426px) and (max-width: 728px){
         padding: 5px 1vw;
     }
-    @media only screen and (max-width: 425px){
+    @media   (max-width: 425px){
         padding: 0px 0vw;
     }
 
@@ -46,10 +46,10 @@ body {
 .responsive-row {
     @extend .container;
     display: flex;
-    @media only screen and (min-width: 729px) {
+    @media   (min-width: 729px) {
         flex-direction: row;
     }
-    @media only screen and (max-width: 728px) {
+    @media   (max-width: 728px) {
         flex-direction: column;
     }
 }
@@ -94,7 +94,7 @@ body {
 }
 
 // @media
-@media only screen and (min-width: 1921px){
+@media   (min-width: 1921px){
     .sm-column-gap {
         column-gap: 0.7em;
     }
@@ -131,7 +131,7 @@ body {
     }
 }
 
-@media only screen and (min-width: 1441px) and (max-width: 1920px){
+@media   (min-width: 1441px) and (max-width: 1920px){
     .sm-column-gap {
         column-gap: 0.5em;
     }
@@ -168,7 +168,7 @@ body {
         padding: 20px;
     }
 }
-@media only screen and (min-width: 728px) and (max-width: 1440px){
+@media   (min-width: 728px) and (max-width: 1440px){
     .sm-column-gap {
         column-gap: 0.4em;
     }
@@ -206,7 +206,7 @@ body {
     }
 }
 
-@media only screen and (min-width: 426px) and (max-width:768px) {
+@media   (min-width: 426px) and (max-width:768px) {
     .sm-column-gap {
         column-gap: 0.4em;
     }
@@ -241,7 +241,7 @@ body {
         padding: 12px;
     }
 }
-@media only screen and (max-width:425px) {
+@media   (max-width:425px) {
     .sm-column-gap {
         column-gap: 0.4em;
     }

@@ -55,7 +55,7 @@ Make sure you have the following tools installed:
 
     * Create a `.env` file in the project root (if necessary) and define your API's URL:
         ```
-        API_URL=http://localhost:8000/api
+        VITE_API_URL=http://localhost:8000/api
         ```
     * Ensure the API is running and accessible.
 
@@ -70,7 +70,10 @@ npm run dev
 ````
 
 The application will be available at `http://localhost:3000` (or another available port).
+You can access /login for log with you username and password or /curriculum:token for receive the resume by token, for example: http://localhost:3000/curriculum/token_code_12345.
+You can get a token when registering your resume data or after log in, a new token is generated every time you access the resume
 
+The Register Curriculum Service is in development.
 -----
 
 ## Project Structure
@@ -109,7 +112,7 @@ Contributions are welcome\! If you have suggestions, found a bug, or want to add
 
 ## License
 
-This project is licensed under the MIT license. See the [LICENSE](https://www.google.com/search?q=./LICENSE.md) file for more details.
+This project is licensed under the MIT license. See the [LICENSE](./LICENSE.md) file for more details.
 
 -----
 
@@ -117,7 +120,7 @@ This project is licensed under the MIT license. See the [LICENSE](https://www.go
 
 Pedro Arthur Gregorio Abreu - [pedro.agb2004@gmail.com](mailto:pedro.agb2004@gmail.com)
 
-Project Link: [`https://react-curriculum-render.vercel.app/`](https://react-curriculum-render.vercel.app)
+Project Link: [`https://react-curriculum-render.vercel.app/login`](https://react-curriculum-render.vercel.app/login)
 
 GitHub Link: [`https://github.com/meiyo-aru/react-curriculum-render`](https://github.com/meiyo-aru/react-curriculum-render)
 

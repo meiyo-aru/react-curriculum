@@ -64,7 +64,7 @@ body {
 
 
 // @media
-@media only screen and (min-width: 1920px){
+@media   (min-width: 1920px){
     h1 {
         font-size: 4rem; 
     }
@@ -85,7 +85,7 @@ body {
     }
 }
 
-@media only screen and (min-width: 1440px) and (max-width: 1920px){
+@media   (min-width: 1440px) and (max-width: 1920px){
     h1 {
         font-size: 3.6rem; 
     }
@@ -105,7 +105,7 @@ body {
         font-size: 1.3rem;
     }
 }
-@media only screen and (min-width: 728px) and (max-width: 1440px){
+@media   (min-width: 728px) and (max-width: 1440px){
     h1 {
         font-size: 3.3rem; 
     }
@@ -126,7 +126,7 @@ body {
     }
 }
 
-@media only screen and (min-width: 425px) and (max-width:768px) {
+@media   (min-width: 425px) and (max-width:768px) {
     h1 {
         font-size: 3rem; 
     }
@@ -146,7 +146,7 @@ body {
         font-size: 1.1rem;
     }
 }
-@media only screen and (max-width:425px) {
+@media   (max-width:425px) {
     h1 {
         font-size: 2.6rem; 
     }

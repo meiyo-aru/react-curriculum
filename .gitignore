@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 start.bat
+.env

@@ -8,7 +8,7 @@ import clsx from "clsx";
 interface CardProps {
     title?: string | React.ReactNode |null
     content?: React.ReactNode | null
-    type?: "smCard" | "card" | "section" | "header" | "alert"
+    type?: "smCard" | "card" | "section" | "header" | "alert" | "success" | "warning" | "info"
     boxShadow?: boolean
     isLoading?: boolean
     classes?: string
@@ -35,6 +35,9 @@ const Card: React.FC<CardProps> = ({
   const sectionClass = clsx(classes, styles.card, "bg-white", boxShadow && "hover-shadow flex-grow");
   const headerClass = clsx(classes, styles.header, boxShadow && "hover-shadow flex-grow");
   const alertClass = clsx(classes, styles.alert, "flex-grow");
+  const successClass = clsx(classes, styles.success, "flex-grow");
+  const warningClass = clsx(classes, styles.warning, "flex-grow");
+  const infoClass = clsx(classes, styles.info, "flex-grow");
 
   switch (type) {
     case "smCard": 
@@ -61,7 +64,28 @@ const Card: React.FC<CardProps> = ({
           {content && content}
         </div>
       )
-    
+
+    case "warning":
+      return (
+        <div style={style && style} className={`${warningClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>
+          {content && content}
+        </div>
+      )
+
+    case "success":
+      return (
+        <div style={style && style} className={`${successClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>
+          {content && content}
+        </div>
+      )
+
+    case "info":
+      return (
+        <div style={style && style} className={`${infoClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>
+          {content && content}
+        </div>
+      )
+
     case "header":
       return (
         <div style={style && style} className={`${headerClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>

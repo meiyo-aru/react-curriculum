@@ -7,11 +7,14 @@ import { useDispatch } from "react-redux";
 import { setPerson } from "../../features/Person/PersonSlice";
 import Card from "../Card/Card";
 import { useNavigate } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 export const SearchPerson: React.FC = () => {
     const [username, setUsername] = useState<string | null>(null);
     const [usernameExists, setUsernameExists] = useState<boolean>(false)
     const [personAuthenticated, setPersonAuthenticated] = useState<boolean | null>(null)
+    const [loadingCurriculum, setLoadingCurriculum] = useState<boolean>(false);
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const apiURL = import.meta.env.VITE_API_URL
@@ -38,15 +41,18 @@ export const SearchPerson: React.FC = () => {
                     if(response){
                         setPersonAuthenticated(true)
                         dispatch(setPerson({person: response.data}))
+                        setLoadingCurriculum(false)
                         navigate("/curriculum/" + response.data.token)
                     }
                 } catch (error) {
                     console.error("Error fetching for authenticate requisition:", error);
                     setPersonAuthenticated(false)
+                    setLoadingCurriculum(false)
                 }
             }
             if(usernameExists && password?.trim()) {
                 fetchAuthenticate();
+                setLoadingCurriculum(true)
             }
     
         }
@@ -104,6 +110,16 @@ export const SearchPerson: React.FC = () => {
                                 }
                             </span>
                             <Button text="Continuar" type="primary" size="md" shadow></Button>
+                            {
+                                loadingCurriculum &&
+                                    <Card type="info" content={
+                                        <span className="row md-column-gap">
+                                            <FontAwesomeIcon icon={faSpinner} pulse color="white" fontSize={"25px"} />
+                                            Tenha paciência, estamos validando seus dados...
+                                        </span>
+                                    }>
+                                    </Card>
+                            }
                         </div>
 
                     </div>

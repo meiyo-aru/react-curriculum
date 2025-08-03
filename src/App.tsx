@@ -7,7 +7,7 @@ function App() {
         <>
         <BrowserRouter>
             <Routes>
-                <Route path="/login" element={<SearchPerson></SearchPerson>}></Route>
+                <Route path="/" element={<SearchPerson></SearchPerson>}></Route>
                 <Route path="/curriculum/:token" element={<Curriculum></Curriculum>}></Route>
             </Routes>
         </BrowserRouter>

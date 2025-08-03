@@ -6,6 +6,8 @@ import type { Project } from "./Project"
 import type { TechnicalSkill } from "./TechnicalSkill"
 
 export interface Person {
+  username: string
+  password: string
   name: string
   positions: string
   about: string
@@ -14,6 +16,7 @@ export interface Person {
   phone_02: string
   mail: string
   linkedin: string
+  token: string
   id: number
   academic_trainings: AcademicTraining[]
   courses: ExtracurricularCourses[]

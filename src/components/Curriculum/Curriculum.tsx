@@ -5,7 +5,6 @@ import Item from "../Item/Item"
 import Languages from "../Languages/Languages"
 import TechnicalSkills from "../TechnicalSkills/TechnicalSkills"
 import type { RootState } from "../../store"
-import "meiyo-react-components/dist/meiyo-react-components.css"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -20,6 +19,32 @@ export const Curriculum: React.FC = () => {
     
     const {token} = useParams()
     const navigate = useNavigate()
+    useEffect(() => {
+        const fetchGenerateNewToken = async () => {
+            try {
+                const startTimeStamp: number = Date.now();
+                const response = await axios.patch(apiURL + "/patch/token", {"username" : person?.username, "password" : person?.password});
+                
+                const endTimeStamp: number = Date.now();
+
+                const result: number = endTimeStamp - startTimeStamp;
+                console.log(`Total request time for generate new token requisition: ${result}ms`);
+
+                if(response){
+                    if(person){
+                        person.token = response.data
+                        dispatch(setPerson({person: person}))
+                    }
+                    setValidToken(true)
+                }
+            } catch (error) {
+                console.error("Error fetching for generate new token:", error);
+                setValidToken(false)
+            }
+        }
+        if(person)
+            fetchGenerateNewToken()
+    }, [person, apiURL, dispatch])
 
     useEffect(() => {
         const fetchValidateToken = async () => {

@@ -67,7 +67,7 @@ export const Curriculum: React.FC = () => {
                 setValidToken(false)
             }
         }
-        if(token) {
+        if(token && !person) {
             fetchValidateToken()
         }
     }, [token, navigate])

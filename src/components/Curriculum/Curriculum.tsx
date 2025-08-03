@@ -19,7 +19,7 @@ export const Curriculum: React.FC = () => {
     
     const {token} = useParams()
     const navigate = useNavigate()
-    useEffect(() => {
+/*     useEffect(() => {
         const fetchGenerateNewToken = async () => {
             try {
                 const startTimeStamp: number = Date.now();
@@ -45,7 +45,7 @@ export const Curriculum: React.FC = () => {
         if(person)
             fetchGenerateNewToken()
     }, [person, apiURL, dispatch])
-
+ */
     useEffect(() => {
         const fetchValidateToken = async () => {
             try {

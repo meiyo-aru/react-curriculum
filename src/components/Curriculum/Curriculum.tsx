@@ -36,7 +36,7 @@ export const Curriculum: React.FC = () => {
                     console.log(`Total request time for generate new token requisition: ${result}ms`);
     
                     if(response){
-                        if(person){
+                        if(person && response.data){
                             setGeneratedNewToken(true)
                             const updatedPerson: Person = {...person, token: response.data }
                             dispatch(setPerson({person: updatedPerson}))

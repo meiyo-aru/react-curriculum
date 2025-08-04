@@ -29,6 +29,8 @@ export const Curriculum: React.FC = () => {
         const fetchGenerateNewToken = async () => {
             try {
                 const startTimeStamp: number = Date.now();
+                console.log("token: " + token)
+                console.log("person token: " + person?.token)
                 const response = await axios.patch(apiURL + "/patch/token", {"token" : token ? token : person?.token});
                 const endTimeStamp: number = Date.now();
                 const result: number = endTimeStamp - startTimeStamp;
@@ -36,9 +38,9 @@ export const Curriculum: React.FC = () => {
 
                 if(response){
                     if(person){
+                        setGeneratedNewToken(true)
                         const updatedPerson: Person = {...person, token: response.data }
                         dispatch(setPerson({person: updatedPerson}))
-                        setGeneratedNewToken(true)
                     }
                 }
             } catch (error) {

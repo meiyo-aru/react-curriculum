@@ -18,6 +18,7 @@ import type {Person} from "../../types/Person"
 export const Curriculum: React.FC = () => {
     const person = useSelector((state: RootState) => state.Person.person)
     const [validToken, setValidToken] = useState<boolean | null>(null)
+    const [generatedNewToken, setGeneratedNewToken] = useState<boolean>(false)
     const dispatch = useDispatch()
     const apiURL = import.meta.env.VITE_API_URL
     
@@ -37,15 +38,16 @@ export const Curriculum: React.FC = () => {
                     if(person){
                         const updatedPerson: Person = {...person, token: response.data }
                         dispatch(setPerson({person: updatedPerson}))
+                        setGeneratedNewToken(true)
                     }
                 }
             } catch (error) {
                 console.error("Error fetching for generate new token:", error);
             }
         }
-        if((token && validToken) || person?.token)
+        if(((token && validToken) || person?.token) && !generatedNewToken)
             fetchGenerateNewToken()
-    }, [])
+    }, [apiURL, dispatch, generatedNewToken, person, token, validToken])
 
     useEffect(() => {
         const fetchValidateToken = async () => {

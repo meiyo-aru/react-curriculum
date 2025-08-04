@@ -18,7 +18,6 @@ import type {Person} from "../../types/Person"
 export const Curriculum: React.FC = () => {
     const person = useSelector((state: RootState) => state.Person.person)
     const [validToken, setValidToken] = useState<boolean | null>(null)
-    const [generatedNewToken, setGeneratedNewToken] = useState<boolean> (false)
     const dispatch = useDispatch()
     const apiURL = import.meta.env.VITE_API_URL
     

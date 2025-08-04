@@ -18,7 +18,6 @@ export const SearchPerson: React.FC = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const apiURL = import.meta.env.VITE_API_URL
-    console.log(apiURL)
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.currentTarget.value)
     }
@@ -42,7 +41,7 @@ export const SearchPerson: React.FC = () => {
                         setPersonAuthenticated(true)
                         dispatch(setPerson({person: response.data}))
                         setLoadingCurriculum(false)
-                        navigate("/curriculum/" + response.data.token)
+                        navigate("/curriculum")
                     }
                 } catch (error) {
                     console.error("Error fetching for authenticate requisition:", error);
@@ -109,7 +108,7 @@ export const SearchPerson: React.FC = () => {
                                         </>
                                 }
                             </span>
-                            <Button text="Continuar" type="primary" size="md" shadow></Button>
+                            <Button content="Continuar" type="primary" size="md" shadow></Button>
                             {
                                 loadingCurriculum &&
                                     <Card type="info" content={

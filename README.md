@@ -70,8 +70,8 @@ npm run dev
 ````
 
 The application will be available at `http://localhost:3000` (or another available port).
-You can access /login for log with you username and password or /curriculum:token for receive the resume by token, for example: http://localhost:3000/curriculum/token_code_12345.
-You can get a token when registering your resume data or after log in, a new token is generated every time you access the resume
+You can access / for log with you username and password or /curriculum:token for receive the resume by token, for example: http://localhost:3000/curriculum/token_code_12345.
+You can get a token when registering your resume data or after log in, when click in Copy URL button. A new token is generated every time you access the resume
 
 The Register Curriculum Service is in development.
 -----
@@ -125,3 +125,4 @@ Project Link: [`https://react-curriculum-render.vercel.app/login`](https://react
 GitHub Link: [`https://github.com/meiyo-aru/react-curriculum-render`](https://github.com/meiyo-aru/react-curriculum-render)
 
 -----
+

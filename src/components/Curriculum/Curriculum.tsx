@@ -28,20 +28,14 @@ export const Curriculum: React.FC = () => {
         const fetchGenerateNewToken = async () => {
             try {
                 const startTimeStamp: number = Date.now();
-
-                console.log("token: " + person?.token)
                 const response = await axios.patch(apiURL + "/patch/token", {"token" : token ? token : person?.token});
-                
                 const endTimeStamp: number = Date.now();
-
                 const result: number = endTimeStamp - startTimeStamp;
                 console.log(`Total request time for generate new token requisition: ${result}ms`);
 
                 if(response){
                     if(person){
                         const updatedPerson: Person = {...person, token: response.data }
-                        console.log("new token: " + response.data)
-                        console.log("new person: " + updatedPerson)
                         dispatch(setPerson({person: updatedPerson}))
                     }
                 }
@@ -57,11 +51,8 @@ export const Curriculum: React.FC = () => {
         const fetchValidateToken = async () => {
             try {
                 const startTimeStamp: number = Date.now();
-                
                 const response = await axios.post(apiURL + "/post/curriculum_by_token", {"token" : token});
-                
                 const endTimeStamp: number = Date.now();
-
                 const result: number = endTimeStamp - startTimeStamp;
                 console.log(`Total request time for curriculum by token requisition: ${result}ms`);
 
@@ -79,7 +70,6 @@ export const Curriculum: React.FC = () => {
         }
     }, [token, navigate, dispatch, apiURL, person])
 
-    console.log("validtoken?: " + validToken)
     return (
         (!person && validToken === null && token) ?
             <Card type="info" content={

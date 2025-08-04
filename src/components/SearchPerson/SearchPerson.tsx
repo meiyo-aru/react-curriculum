@@ -9,6 +9,7 @@ import Card from "../Card/Card";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+
 export const SearchPerson: React.FC = () => {
     const [username, setUsername] = useState<string | null>(null);
     const [usernameExists, setUsernameExists] = useState<boolean>(false)
@@ -29,11 +30,8 @@ export const SearchPerson: React.FC = () => {
             const fetchAuthenticate = async () => {
                 try {
                     const startTimeStamp: number = Date.now();
-                    
                     const response = await axios.post(apiURL + "/post/curriculum", {"username" : username, "password" : password});
-                    
                     const endTimeStamp: number = Date.now();
-    
                     const result: number = endTimeStamp - startTimeStamp;
                     console.log(`Total request time for authenticate requisition: ${result}ms`);
     

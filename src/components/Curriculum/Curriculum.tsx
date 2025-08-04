@@ -13,19 +13,19 @@ import Card from "../Card/Card"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { CopyURL } from "../CopyURL/CopyURL"
-import type {Person} from "../../types/Person"
-
+/* import type {Person} from "../../types/Person"
+ */
 export const Curriculum: React.FC = () => {
     const person = useSelector((state: RootState) => state.Person.person)
     const [validToken, setValidToken] = useState<boolean | null>(null)
-    const [generatedNewToken, setGeneratedNewToken] = useState<boolean>(false)
+    /* const [generatedNewToken, setGeneratedNewToken] = useState<boolean>(false) */
     const dispatch = useDispatch()
     const apiURL = import.meta.env.VITE_API_URL
     
     const {token} = useParams()
     const navigate = useNavigate()
     
-    useEffect(() => {
+/*     useEffect(() => {
         const fetchGenerateNewToken = async () => {
             if(person){
                 try {
@@ -51,7 +51,7 @@ export const Curriculum: React.FC = () => {
             fetchGenerateNewToken()
         }
     }, [apiURL, dispatch, generatedNewToken, person, token, validToken])
-
+ */
     useEffect(() => {
         const fetchValidateToken = async () => {
             try {

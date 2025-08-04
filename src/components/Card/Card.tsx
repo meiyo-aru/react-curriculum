@@ -8,9 +8,10 @@ import clsx from "clsx";
 interface CardProps {
     title?: string | React.ReactNode |null
     content?: React.ReactNode | null
-    type?: "smCard" | "card" | "section" | "header" | "alert" | "success" | "warning" | "info"
+    type?: "smCard" | "card" | "section" | "header" | "alert" | "success" | "warning" | "info" | "button"
     boxShadow?: boolean
     isLoading?: boolean
+    transform?: boolean
     classes?: string
     style?: CSSProperties
     onMouseEnter?: React.MouseEventHandler<HTMLElement>
@@ -23,6 +24,7 @@ const Card: React.FC<CardProps> = ({
     content,
     type,
     boxShadow,
+    transform,
     isLoading,
     classes,
     style,
@@ -38,6 +40,7 @@ const Card: React.FC<CardProps> = ({
   const successClass = clsx(classes, styles.success, "flex-grow");
   const warningClass = clsx(classes, styles.warning, "flex-grow");
   const infoClass = clsx(classes, styles.info, "flex-grow");
+  const buttonClass = clsx(classes, styles.button, "flex-grow", transform && "hover-size-in");
 
   switch (type) {
     case "smCard": 
@@ -89,6 +92,13 @@ const Card: React.FC<CardProps> = ({
     case "header":
       return (
         <div style={style && style} className={`${headerClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>
+          {content && content}
+        </div>
+      )
+
+    case "button":
+      return (
+        <div style={style && style} className={`${buttonClass}`} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>
           {content && content}
         </div>
       )

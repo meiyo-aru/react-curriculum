@@ -9,6 +9,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<SearchPerson></SearchPerson>}></Route>
                 <Route path="/curriculum/:token" element={<Curriculum></Curriculum>}></Route>
+                <Route path="/curriculum" element={<Curriculum></Curriculum>}></Route>
             </Routes>
         </BrowserRouter>
         </>

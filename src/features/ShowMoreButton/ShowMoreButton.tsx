@@ -31,7 +31,7 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
     }, [ShowMoreState, componentId])
     
     return (
-        <span onClick={onClick} className={`${style.chevronDownIcon} ${clsx(classes)}`}>
+        <span onClick={onClick} className={`${style.chevronDownIcon} ${'hover-size-in'} ${clsx(classes)}`}>
             <FontAwesomeIcon icon={clicked ? faChevronUp : faChevronDown}></FontAwesomeIcon>
         </span>
     )

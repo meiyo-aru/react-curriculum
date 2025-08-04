@@ -27,28 +27,29 @@ export const Curriculum: React.FC = () => {
     
     useEffect(() => {
         const fetchGenerateNewToken = async () => {
-            try {
-                const startTimeStamp: number = Date.now();
-                console.log("token: " + token)
-                console.log("person token: " + person?.token)
-                const response = await axios.patch(apiURL + "/patch/token", {"token" : token ? token : person?.token});
-                const endTimeStamp: number = Date.now();
-                const result: number = endTimeStamp - startTimeStamp;
-                console.log(`Total request time for generate new token requisition: ${result}ms`);
-
-                if(response){
-                    if(person){
-                        setGeneratedNewToken(true)
-                        const updatedPerson: Person = {...person, token: response.data }
-                        dispatch(setPerson({person: updatedPerson}))
+            if(person){
+                try {
+                    const startTimeStamp: number = Date.now();
+                    const response = await axios.patch(apiURL + "/patch/token", {"token" : person.token});
+                    const endTimeStamp: number = Date.now();
+                    const result: number = endTimeStamp - startTimeStamp;
+                    console.log(`Total request time for generate new token requisition: ${result}ms`);
+    
+                    if(response){
+                        if(person){
+                            setGeneratedNewToken(true)
+                            const updatedPerson: Person = {...person, token: response.data }
+                            dispatch(setPerson({person: updatedPerson}))
+                        }
                     }
+                } catch (error) {
+                    console.error("Error fetching for generate new token:", error);
                 }
-            } catch (error) {
-                console.error("Error fetching for generate new token:", error);
             }
         }
-        if(((token && validToken) || person?.token) && !generatedNewToken)
+        if(((token && validToken) || person?.token) && !generatedNewToken) {
             fetchGenerateNewToken()
+        }
     }, [apiURL, dispatch, generatedNewToken, person, token, validToken])
 
     useEffect(() => {

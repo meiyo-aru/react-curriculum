@@ -43,12 +43,10 @@ export const Curriculum: React.FC = () => {
                         console.log("new token: " + response.data)
                         console.log("new person: " + updatedPerson)
                         dispatch(setPerson({person: updatedPerson}))
-                        setGeneratedNewToken(true)
                     }
                 }
             } catch (error) {
                 console.error("Error fetching for generate new token:", error);
-                setGeneratedNewToken(false)
             }
         }
         if((token && validToken) || person?.token)

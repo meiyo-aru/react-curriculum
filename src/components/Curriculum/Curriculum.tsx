@@ -12,9 +12,7 @@ import { setPerson } from "../../features/Person/PersonSlice"
 import Card from "../Card/Card"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { CopyURL } from "../CopyURL/CopyURL"
-/* import type {Person} from "../../types/Person"
- */
+
 export const Curriculum: React.FC = () => {
     const person = useSelector((state: RootState) => state.Person.person)
     const [validToken, setValidToken] = useState<boolean | null>(null)
@@ -73,7 +71,7 @@ export const Curriculum: React.FC = () => {
         if(token && validToken === null) {
             fetchValidateToken()
         }
-    }, [token, navigate, dispatch, apiURL, person])
+    }, [token, navigate, dispatch, apiURL, person, validToken])
 
     return (
         (!person && validToken === null && token) ?
@@ -87,7 +85,6 @@ export const Curriculum: React.FC = () => {
         :
             (validToken === true || person) ?
                 <div className="main-container">
-                    <CopyURL></CopyURL>
                     <div className="main-container-a" style={person?.skills.length && person?.langs.length ? undefined : {width: "100%"}}>
                         <Header person={person && person} isLoading={person ? false : true}></Header>
                         <AboutMe text={person?.about} isLoading={person ? false : true}></AboutMe>

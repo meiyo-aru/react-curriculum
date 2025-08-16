@@ -25,7 +25,6 @@ export const SearchPerson: React.FC = () => {
  
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if(usernameExists){
             const password = event.currentTarget.password.value as string
             const fetchAuthenticate = async () => {
                 try {
@@ -47,12 +46,12 @@ export const SearchPerson: React.FC = () => {
                     setLoadingCurriculum(false)
                 }
             }
-            if(usernameExists && password?.trim()) {
+            if(password?.trim()) {
                 fetchAuthenticate();
                 setLoadingCurriculum(true)
             }
     
-        }
+        
     }
     
     useEffect(() => {

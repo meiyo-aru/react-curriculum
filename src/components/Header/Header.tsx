@@ -1,5 +1,6 @@
 import type { Person } from "../../types/Person"
 import Card from "../Card/Card"
+import { CopyURL } from "../CopyURL/CopyURL"
 import Text from "../Text/Text"
 
 interface HeaderProps {
@@ -26,6 +27,7 @@ const Header: React.FC<HeaderProps> = ({
                         <span>LinkedIn: <a href={`http://${person?.linkedin}`} className="link-yellow">Perfil</a></span>
                     </>
                 }></Text>
+                <CopyURL></CopyURL>
             </>
         } type="header"></Card>
     )

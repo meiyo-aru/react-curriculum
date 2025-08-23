@@ -32,9 +32,9 @@ const Card: React.FC<CardProps> = ({
     onMouseLeave,
     onClick
 }) => {
-  const smCardClass = clsx(classes, styles.smCard, "bg-grey", boxShadow && "hover-shadow flex-grow");
-  const cardClass = clsx(styles.card, "bg-light", boxShadow && "hover-shadow flex-grow", classes);
-  const sectionClass = clsx(classes, styles.card, "bg-white", boxShadow && "hover-shadow flex-grow");
+  const smCardClass = clsx(classes, styles.smCard, boxShadow && "hover-shadow flex-grow");
+  const cardClass = clsx(styles.card, boxShadow && "hover-shadow flex-grow", classes);
+  const sectionClass = clsx(classes, styles.section, boxShadow && "hover-shadow flex-grow");
   const headerClass = clsx(classes, styles.header, boxShadow && "hover-shadow flex-grow");
   const alertClass = clsx(classes, styles.alert, "flex-grow");
   const successClass = clsx(classes, styles.success, "flex-grow");

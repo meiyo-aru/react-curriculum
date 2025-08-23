@@ -3,12 +3,11 @@ import type { TechnicalSkill } from "../../types/TechnicalSkill"
 import Card from "../Card/Card"
 import Text from "../Text/Text"
 import styles from "./TechnicalSkills.module.scss"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import ShowMoreButton from "../../features/ShowMoreButton/ShowMoreButton"
 import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "../../store"
 import { setShowMoreClicked } from "../../features/ShowMoreButton/ShowMoreButtonSlice"
+import { Info } from "../Info/Info"
 
 
 interface TechnicalSkillsProps {
@@ -24,7 +23,7 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
 }) => {
     const [focused, setFocused] = useState<number|null>(null)
     const maxItems = 6
-    const [infoFocused, setInfoFocused] = useState<boolean>(false)
+
 /* 
     Commented because multiple asynchronous requests are so much costly for free plan of Render,
     then only one complex request is more interesting in this context
@@ -67,26 +66,31 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
             <Card title={
                     <>
                         {componentId}
-                        <span style={{float: "right", color: "#4b678f", cursor: "pointer"}} onClick={() => {setInfoFocused(infoFocused ? false : true)}}>
+                        <Info infoId={-1} text="Habilidades técnicas são capacidades ou aptidões que um profissional possui. A barra de aptidão mensura o nível de confiança, experiência prática e conhecimento sobre o assunto."></Info>
+{/*                         <span style={{float: "right", color: "#4b678f", cursor: "pointer"}} onClick={() => {
+                            handleFocused(-1)
+                        }}>
                             <FontAwesomeIcon icon={faCircleInfo} />
                         </span>
-                        <Card type="card" isLoading={isLoading} classes={`${infoFocused ? styles.active : styles.inactive} ${styles.info} bg-light-grey`} content={
+                        <Card type="card" isLoading={isLoading} classes={`${isFocused(-1) ? styles.active : styles.inactive} ${styles.info} bg-light-grey`} content={
                             <span>Habilidades técnicas são capacidades ou aptidões que um profissional possui. A barra de aptidão mensura o nível de confiança, experiência prática e conhecimento sobre o assunto.</span>
                         }>
-                        </Card> 
+                        </Card>  */}
                     </>
                 } boxShadow={true} isLoading={isLoading} classes="column sm-row-gap" content={
                 <div className="flex column sm-row-gap">
                     {sortedTechnicalSkills.map((skill, index) => (
-                        (index < maxItems || ShowMoreState.componentId === componentId) &&
-
-                            <Card key={index} type="card" boxShadow={true} onMouseEnter={() => {setFocused(skill.id)}} onMouseLeave={() => {setFocused(null)}} isLoading={isLoading} content={
-                                <>
+                        (index < maxItems || ShowMoreState.componentId === componentId) &&                
+                        <Card key={index} type="card" boxShadow={true} style={{padding: "10px 12px"}} onMouseEnter={() => {setFocused(skill.id)}} onMouseLeave={() => {setFocused(null)}} isLoading={isLoading} content={
+                            <>
                                     <Text type="h5" content={
                                         <div className="column">
-                                            <strong>
-                                                {skill.name}
-                                            </strong>
+                                            <div className="row space-between">
+                                                <strong>
+                                                    {skill.name}
+                                                </strong>
+                                                <Info infoId={index} text={skill.about}></Info>
+                                            </div>
                                             <span className="sm-font-size" style={{textAlign: "end"}}>{skill.level}</span>
                                         </div>
                                     }></Text> 

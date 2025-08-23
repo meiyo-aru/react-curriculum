@@ -2,6 +2,8 @@
 /* @use "../../static/scss/partials/utilities/variables";
  */
 .card {
+    background-color: #f8f9fa !important;
+    color: black;
     text-align: left;
     position: relative;
     @media   (min-width: 729px) {
@@ -14,8 +16,14 @@
         @include mixins.card-style($padding: 10px 2px);
     }
 }
+.section {
+    @extend .card;
+    background-color: #ffffff !important;
+    color: rgb(20, 20, 20);
+}
 
 .card .card {
+
     text-align: left;
     @media   (min-width: 729px) {
         @include mixins.card-style($bg-color: white, $padding: 10px 18px, $radius: 5px);
@@ -30,6 +38,8 @@
 
 
 .sm-card {
+    background-color: #4b678f !important;
+    color: rgb(255, 255, 255) !important;
     position: relative;
     height: max-content;
     width: max-content;

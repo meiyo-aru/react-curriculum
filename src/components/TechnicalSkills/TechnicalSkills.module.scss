@@ -13,7 +13,7 @@
 } 
 
 .focused {
-    height: 15px;
+    height: 20px;
 }
 .percentage-level {
     float: left;
@@ -21,19 +21,7 @@
     text-align: center;
     width: 100%;
     font-weight: 500;
+    align-content: center;
+    height:100%;
 }
 
-.info.active {
-    opacity: 1;
-    z-index: 5;
-}
-.info.inactive {
-    opacity: 0;
-    z-index: -5;
-}
-
-.info {
-    position: absolute;
-    transition: opacity 0.15s ease-in-out;
-    padding: 15px 20px !important;
-}

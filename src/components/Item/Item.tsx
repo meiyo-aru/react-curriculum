@@ -75,8 +75,8 @@ const Item: React.FC<ItemProps> = ({
                                             </span>
                                         </span>
                                         {'github' in item &&
-                                            <a href={item.github ? item.github : undefined} className="github-link" title={`${item.github ? "Clique para ser redirecionado para o Github do projeto" : "Github atualmente indisponível para esse projeto"}`}>
-                                                <Card type='smCard' isLoading={isLoading} classes={`${item.github ? 'btn-github bg-grey' : 'btn-inactive'} xl-rounded`} title={
+                                            <a href={item.github ? item.github : undefined} title={`${item.github ? "Clique para ser redirecionado para o Github do projeto" : "Github atualmente indisponível para esse projeto"}`}>
+                                                <Card type='smCard' isLoading={isLoading} classes={`${item.github ? 'btn-github' : 'btn-inactive'} xl-rounded`} title={
                                                     <span style={{textWrap: "nowrap"}}>
                                                         <MarkGithubIcon size={24} />
                                                         <span style={{marginLeft: "6px"}}>

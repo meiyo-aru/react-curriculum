@@ -4,4 +4,5 @@ export interface TechnicalSkill {
   level: string
   percent_level: number
   id: number
+  about: string
 }

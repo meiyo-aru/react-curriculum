@@ -122,9 +122,10 @@ Pedro Arthur Gregorio Abreu - [pedro.agb2004@gmail.com](mailto:pedro.agb2004@gma
 
 Project Link: [`https://react-curriculum-render.vercel.app`](https://react-curriculum-render.vercel.app)
 
-GitHub Link: [`https://github.com/meiyo-aru/react-curriculum-render`](https://github.com/meiyo-aru/react-curriculum-render)
+GitHub Link: [`https://github.com/meiyo-aru/react-curriculum`](https://github.com/meiyo-aru/react-curriculum)
 
 -----
+
 
 
 

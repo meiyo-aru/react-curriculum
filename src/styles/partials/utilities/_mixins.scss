@@ -1,4 +1,4 @@
-@mixin card-style($bg-color: #f8f9fa, $radius: '10px', $padding: '4px 8px', $fit-content:null, $color: black) {
+@mixin card-style($bg-color: null, $radius: '10px', $padding: '4px 8px', $fit-content:null, $color: black) {
     background-color: $bg-color;
     border-radius: $radius;
     padding: $padding;

@@ -1,3 +1,5 @@
+"use client"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Card from "../Card/Card"
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons"
@@ -29,10 +31,10 @@ export const Info: React.FC<InfoProps> = ({...props}) => {
 
     return (
         <>
-            <span className={styles.infoIcon} onClick={handleFocused}>
+            <span className={styles['info-icon']} onClick={handleFocused}>
                 <FontAwesomeIcon icon={faCircleInfo} />
             </span>
-            <Card type="card" classes={`${isFocused() ? styles.active : styles.inactive} ${styles.info} bg-light-grey`} content={
+            <Card type="card" classes={`${isFocused() ? styles['active'] : styles['inactive']} ${styles['info']} bg-light-grey`} content={
                 <span>{props.text}</span>
             }>
             </Card> 

@@ -1,6 +1,3 @@
-/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
- */
 import styles from "./Card.module.scss"
 import React, { type CSSProperties } from "react";
 import clsx from "clsx";
@@ -33,22 +30,22 @@ const Card: React.FC<CardProps> = ({
     onClick
 }) => {
   // Define classes based on type and props
-  const smCardClass = clsx(classes, styles.smCard, boxShadow && "hover-shadow flex-grow");
-  const cardClass = clsx(styles.card, boxShadow && "hover-shadow flex-grow", classes);
-  const sectionClass = clsx(classes, styles.section, boxShadow && "hover-shadow flex-grow");
-  const headerClass = clsx(classes, styles.header, boxShadow && "hover-shadow flex-grow");
-  const alertClass = clsx(classes, styles.alert, "flex-grow");
-  const successClass = clsx(classes, styles.success, "flex-grow");
-  const warningClass = clsx(classes, styles.warning, "flex-grow");
-  const infoClass = clsx(classes, styles.info, "flex-grow");
-  const buttonClass = clsx(classes, styles.button, "flex-grow", transform && "hover-size-in");
+  const smCardClass = clsx(classes, styles['sm-card'], boxShadow && "hover-shadow flex-grow");
+  const cardClass = clsx(styles['card'], boxShadow && "hover-shadow flex-grow", classes);
+  const sectionClass = clsx(classes, styles['section'], boxShadow && "hover-shadow flex-grow");
+  const headerClass = clsx(classes, styles['header'], boxShadow && "hover-shadow flex-grow");
+  const alertClass = clsx(classes, styles['alert'], "flex-grow");
+  const successClass = clsx(classes, styles['success'], "flex-grow");
+  const warningClass = clsx(classes, styles['warning'], "flex-grow");
+  const infoClass = clsx(classes, styles['info'], "flex-grow");
+  const buttonClass = clsx(classes, styles['button'], "flex-grow", transform && "hover-size-in");
 
   // Render based on type
   switch (type) {
     case "smCard": 
       return (
           isLoading ?
-            <div style={style && style} className={`${smCardClass} ${clsx("loading-gradient", styles.minSize)}`}>
+            <div style={style && style} className={`${smCardClass} ${clsx("loading-gradient", styles['min-size'])}`}>
             </div>
             :
             <div style={style && style} className={smCardClass} onClick={onClick && onClick} onMouseEnter={onMouseEnter && onMouseEnter} onMouseLeave={onMouseLeave && onMouseLeave}>

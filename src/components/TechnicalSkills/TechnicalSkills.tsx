@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemo, useState } from "react"
 import type { TechnicalSkill } from "../../types/TechnicalSkill"
 import Card from "../Card/Card"
@@ -61,11 +63,11 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
                                             <span className="sm-font-size" style={{textAlign: "end"}}>{skill.level}</span>
                                         </div>
                                     }></Text> 
-                                    <div className={`${styles.percentageBar} ${focused === skill.id && styles.focused}`} title="Nível de proficiência de 1 à 100">
+                                    <div className={`${styles['percentage-bar']} ${focused === skill.id && styles['focused']}`} title="Nível de proficiência de 1 à 100">
                                         {focused === skill.id && 
-                                            <h5 className={`${styles.percentageLevel} sm-font-size`}>{skill.percent_level} / 100</h5>
+                                            <h5 className={`${styles['percentage-level']} sm-font-size`}>{skill.percent_level} / 100</h5>
                                         }
-                                        <div className={`${styles.percentage}`} style={{width: `${skill.percent_level}%`}}>
+                                        <div className={`${styles['percentage']}`} style={{width: `${skill.percent_level}%`}}>
                                         </div>
                                     </div>
                                 </>

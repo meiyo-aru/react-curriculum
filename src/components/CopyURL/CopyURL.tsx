@@ -1,3 +1,5 @@
+"use client"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Card from "../Card/Card"
 import { faCopy } from "@fortawesome/free-solid-svg-icons"
@@ -13,7 +15,7 @@ export const CopyURL: React.FC = () => {
 
     return (
         // Button to copy the curriculum URL with token to clipboard
-        <Card type="button" classes={`${style.copy}`} style={{padding: "10px 15px",backgroundColor: "transparent", color: copied ? "rgb(107 137 169)" : undefined}} onClick={
+        <Card type="button" classes={`${style['copy']}`} style={{padding: "10px 15px",backgroundColor: "transparent", color: copied ? "rgb(107 137 169)" : undefined}} onClick={
             () => {
                 navigator.clipboard.writeText("https://react-curriculum-render.vercel.app/curriculum/" + person?.token);
                 setCopied(true)

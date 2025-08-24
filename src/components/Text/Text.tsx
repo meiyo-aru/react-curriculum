@@ -21,13 +21,13 @@ const Text: React.FC<TextProps> = ({
             return (
                 // paragraph with loading state
                 isLoading ?
-                    <p className={`${styles.p} ${"column"} ${"md-row-gap"} ${clsx(classes)}`} style={style}>
+                    <p className={`${styles['p']} ${"column"} ${"md-row-gap"} ${clsx(classes)}`} style={style}>
                         <span className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "100%", height: "20px"}}></span>
                         <span className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "70%", height: "20px"}}></span>
                         <span className={`${"loading-gradient"} ${"sm-rounded"}`} style={{ width: "40%", height: "20px"}}></span>
                     </p>
                     :    
-                    <p className={`${styles.p} ${clsx(classes)}`} style={style}>
+                    <p className={`${styles['p']} ${clsx(classes)}`} style={style}>
                         {content && content}
                     </p>
                 
@@ -37,7 +37,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 // h1 with loading state
                 isLoading ?
-                    <h1 className={`${styles.h1} ${clsx(classes)}`} style={style}>
+                    <h1 className={`${styles['h1']} ${clsx(classes)}`} style={style}>
                         <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h1>
                     :    
@@ -51,7 +51,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 // h2 with loading state
                 isLoading ?
-                    <h2 className={`${"styled-title"} ${styles.h2} ${clsx(classes)}`} style={style}>
+                    <h2 className={`${"styled-title"} ${styles['h2']} ${clsx(classes)}`} style={style}>
                         <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h2>
                     :    
@@ -66,7 +66,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 // h3 with loading state
                 isLoading ?
-                    <h3 className={`${styles.h3} ${clsx(classes)}`} style={style}>
+                    <h3 className={`${styles['h3']} ${clsx(classes)}`} style={style}>
                         <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h3>
                     :    
@@ -78,7 +78,7 @@ const Text: React.FC<TextProps> = ({
             return (
                 // h5 with loading state
                 isLoading ?
-                    <h5 className={`${styles.h5} ${clsx(classes)}`} style={style}>
+                    <h5 className={`${styles['h5']} ${clsx(classes)}`} style={style}>
                         <span className={`${"loading-gradient"} ${"sm-rounded"}`}></span>
                     </h5>
                     :    

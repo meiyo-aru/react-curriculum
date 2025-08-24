@@ -33,7 +33,7 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
     
     // Render the button with appropriate icon based on clicked state
     return (
-        <span onClick={onClick} className={`${style.chevronDownIcon} ${clsx(classes)}`}>
+        <span onClick={onClick} className={`${style['chevron-down-icon']} ${clsx(classes)}`}>
             <FontAwesomeIcon icon={clicked ? faChevronUp : faChevronDown}></FontAwesomeIcon>
         </span>
     )

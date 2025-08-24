@@ -1,4 +1,4 @@
-import type { Language } from "../../types/Language"
+import type { Language } from "@/types/Language"
 import Card from "../Card/Card"
 import Text from "../Text/Text"
 

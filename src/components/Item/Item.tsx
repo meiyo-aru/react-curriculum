@@ -1,21 +1,21 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
-import SeeMore from '../../features/SeeMore/SeeMore'
+import SeeMore from '@/features/SeeMore/SeeMore'
 import Card from '../Card/Card'
-import type { AcademicTraining } from '../../types/AcademicTraining.ts'
-import type { Experience } from '../../types/Experience.ts'
-import type { Project } from '../../types/Project.ts'
+import type { AcademicTraining } from '@/types/AcademicTraining'
+import type { Experience } from '@/types/Experience'
+import type { Project } from '@/types/Project'
 import Text from '../Text/Text'
 import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '../../store'
-import { setSeeMoreClicked } from '../../features/SeeMore/SeeMoreSlice.ts'
+import type { RootState } from '@/store'
+import { setSeeMoreClicked } from '@/features/SeeMore/SeeMoreSlice'
 
 import style from "./Item.module.scss"
 import { MarkGithubIcon } from '@primer/octicons-react'
-import type { ExtracurricularCourses } from '../../types/ExtracurricularCourses.ts'
-import ShowMoreButton from '../../features/ShowMoreButton/ShowMoreButton.tsx'
-import { setShowMoreClicked } from '../../features/ShowMoreButton/ShowMoreButtonSlice.ts'
+import type { ExtracurricularCourses } from '@/types/ExtracurricularCourses'
+import ShowMoreButton from '@/features/ShowMoreButton/ShowMoreButton'
+import { setShowMoreClicked } from '@/features/ShowMoreButton/ShowMoreButtonSlice'
 
 interface ItemProps {
     items: AcademicTraining[] | Experience[] | Project[] | ExtracurricularCourses[] | undefined // array of items to be displayed

@@ -1,14 +1,14 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import type { TechnicalSkill } from "../../types/TechnicalSkill"
+import type { TechnicalSkill } from "@/types/TechnicalSkill"
 import Card from "../Card/Card"
 import Text from "../Text/Text"
 import styles from "./TechnicalSkills.module.scss"
-import ShowMoreButton from "../../features/ShowMoreButton/ShowMoreButton"
+import ShowMoreButton from "@/features/ShowMoreButton/ShowMoreButton"
 import { useDispatch, useSelector } from "react-redux"
-import type { RootState } from "../../store"
-import { setShowMoreClicked } from "../../features/ShowMoreButton/ShowMoreButtonSlice"
+import type { RootState } from "@/store"
+import { setShowMoreClicked } from "@/features/ShowMoreButton/ShowMoreButtonSlice"
 import { Info } from "../Info/Info"
 
 

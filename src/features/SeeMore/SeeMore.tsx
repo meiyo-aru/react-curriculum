@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import style from "./SeeMore.module.scss"
-import type {RootState} from "../../store"
+import type {RootState} from "@/store"
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 

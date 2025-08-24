@@ -5,7 +5,7 @@ import {Button} from "meiyo-react-components"
 import "meiyo-react-components/dist/meiyo-react-components.css"
 import style from "./SearchPerson.module.scss"
 import { useDispatch } from "react-redux";
-import { setPerson } from "../../features/Person/PersonSlice";
+import { setPerson } from "@/features/Person/PersonSlice";
 import Card from "../Card/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";

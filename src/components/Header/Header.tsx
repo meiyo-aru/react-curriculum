@@ -1,4 +1,4 @@
-import type { Person } from "../../types/Person"
+import type { Person } from "@/types/Person"
 import Card from "../Card/Card"
 import { CopyURL } from "../CopyURL/CopyURL"
 import Text from "../Text/Text"

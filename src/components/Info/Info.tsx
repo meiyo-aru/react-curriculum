@@ -5,8 +5,8 @@ import Card from "../Card/Card"
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons"
 import styles from "./Info.module.scss"
 import { useDispatch, useSelector } from "react-redux"
-import type { RootState } from "../../store"
-import { setFocusedInfo } from "../../features/Info/InfoSlice"
+import type { RootState } from "@/store"
+import { setFocusedInfo } from "@/features/Info/InfoSlice"
 
 interface InfoProps {
     componentId?: string | null // optional, to identify which component this info belongs to

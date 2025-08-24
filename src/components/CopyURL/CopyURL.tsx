@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Card from "../Card/Card"
 import { faCopy } from "@fortawesome/free-solid-svg-icons"
 import { useSelector } from "react-redux"
-import type { RootState } from "../../store"
+import type { RootState } from "@/store"
 import { useState } from "react"
 import style from "./CopyURL.module.scss"
 

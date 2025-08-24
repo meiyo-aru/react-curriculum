@@ -1,4 +1,4 @@
-# React Curriculum Render
+# React Curriculum
 
 A robust and optimized Server-Side Rendering (SSR) service, built with **React**, state management via **Redux**, styling with **SCSS**, and focused on data efficiency through a **single API request**.
 
@@ -125,5 +125,6 @@ Project Link: [`https://react-curriculum-render.vercel.app`](https://react-curri
 GitHub Link: [`https://github.com/meiyo-aru/react-curriculum-render`](https://github.com/meiyo-aru/react-curriculum-render)
 
 -----
+
 
 

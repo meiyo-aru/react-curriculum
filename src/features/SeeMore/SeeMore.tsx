@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import clsx from "clsx";
 
 interface SeeMoreProps {
-    isActive?: boolean
-    onClick?: React.MouseEventHandler<HTMLElement>
-    componentId?: string
-    seeMoreId?: number
-    classes?: string
+    isActive?: boolean // if true, the "see more" is active (can be clicked)
+    onClick?: React.MouseEventHandler<HTMLElement> // optional click event handler
+    componentId?: string // optional, to identify which component this button belongs to
+    seeMoreId?: number // optional, to identify which "see more" this is within the component
+    classes?: string // optional, additional classes to add
 }
 const SeeMore: React.FC<SeeMoreProps> = ({
     isActive,
@@ -18,9 +18,11 @@ const SeeMore: React.FC<SeeMoreProps> = ({
     seeMoreId,
     classes
 }) => {
-    const [clicked, setClicked] = useState<boolean>(false);
-    const SeeMoreState = useSelector((state: RootState) => state.SeeMore)
 
+    const [clicked, setClicked] = useState<boolean>(false); // state to control if the button is clicked (showing less or more)
+    const SeeMoreState = useSelector((state: RootState) => state.SeeMore) // global state to control "see more" button
+
+    // update clicked state based on global state
     useEffect(()=>{
         if(SeeMoreState.componentId === componentId && SeeMoreState.seeMoreId === seeMoreId){
             setClicked(true)
@@ -29,6 +31,7 @@ const SeeMore: React.FC<SeeMoreProps> = ({
         }
     }, [SeeMoreState, componentId, seeMoreId])
     
+    // Render the "see more" button with appropriate text based on clicked state
     return (
         <div className={`${style.seeMore} `} onClick={(event) => {
                 if(onClick){

@@ -8,9 +8,9 @@ import style from "./ShowMoreButton.module.scss"
 import clsx from "clsx"
 
 interface ShowMoreButtonProps {
-    onClick?: React.MouseEventHandler<HTMLElement>
-    componentId?: string
-    classes?: string
+    onClick?: React.MouseEventHandler<HTMLElement> // optional click event handler
+    componentId?: string // optional, to identify which component this button belongs to
+    classes?: string // optional, additional classes to add
 }
 const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
     onClick,
@@ -18,10 +18,11 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
     classes
 
 }) => {
-    const [clicked, setClicked] = useState<boolean>(false);
+    const [clicked, setClicked] = useState<boolean>(false); // state to control if the button is clicked (showing less or more)
 
-    const ShowMoreState = useSelector((state: RootState) => state.ShowMore)
+    const ShowMoreState = useSelector((state: RootState) => state.ShowMore) // global state to control "show more" button
 
+    // update clicked state based on global state
     useEffect(()=>{
         if(ShowMoreState.componentId === componentId){
             setClicked(true)
@@ -30,6 +31,7 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
         }
     }, [ShowMoreState, componentId])
     
+    // Render the button with appropriate icon based on clicked state
     return (
         <span onClick={onClick} className={`${style.chevronDownIcon} ${clsx(classes)}`}>
             <FontAwesomeIcon icon={clicked ? faChevronUp : faChevronDown}></FontAwesomeIcon>

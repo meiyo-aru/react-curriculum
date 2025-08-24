@@ -3,17 +3,18 @@ import Card from "../Card/Card"
 import Text from "../Text/Text"
 
 interface LanguagesProps {
-    languages: Language[] | undefined
-    isLoading?: boolean
-    componentId?: string
+    languages: Language[] | undefined // array of languages
+    isLoading?: boolean // loading state
+    componentId?: string // optional component ID for title
 }
 const Languages: React.FC<LanguagesProps> = ({
     languages,
     isLoading,
     componentId = "Idiomas"
 }) => {
-    if(!isLoading && languages) {
+    if(!isLoading && languages) { // if not loading and languages exist, show the languages, else show loading state
         return (
+            // Card with title "Idiomas" and list of languages with their levels
             <Card title={componentId} isLoading={isLoading} boxShadow={true} content={
                 <div className="column sm-row-gap">
                     {languages?.map((language) => (

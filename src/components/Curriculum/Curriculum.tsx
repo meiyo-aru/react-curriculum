@@ -14,66 +14,41 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 
 export const Curriculum: React.FC = () => {
-    const person = useSelector((state: RootState) => state.Person.person)
-    const [validToken, setValidToken] = useState<boolean | null>(null)
-    /* const [generatedNewToken, setGeneratedNewToken] = useState<boolean>(false) */
-    const dispatch = useDispatch()
-    const apiURL = import.meta.env.VITE_API_URL
+    const person = useSelector((state: RootState) => state.Person.person) // global state to control person data
+    const [validToken, setValidToken] = useState<boolean | null>(null)  // state to control if the token is valid
+    const dispatch = useDispatch() // to dispatch actions to the redux store
+    const apiURL = import.meta.env.VITE_API_URL // API URL from environment variable or default to localhost
     
-    const {token} = useParams()
-    const navigate = useNavigate()
-    
-/*     useEffect(() => {
-        const fetchGenerateNewToken = async () => {
-            if(person){
-                try {
-                    const startTimeStamp: number = Date.now();
-                    const response = await axios.patch(apiURL + "/patch/token", {"token" : person.token});
-                    const endTimeStamp: number = Date.now();
-                    const result: number = endTimeStamp - startTimeStamp;
-                    console.log(`Total request time for generate new token requisition: ${result}ms`);
-    
-                    if(response){
-                        if(person && response.data){
-                            setGeneratedNewToken(true)
-                            const updatedPerson: Person = {...person, token: response.data }
-                            dispatch(setPerson({person: updatedPerson}))
-                        }
-                    }
-                } catch (error) {
-                    console.error("Error fetching for generate new token:", error);
-                }
-            }
-        }
-        if(((token && validToken) || person?.token) && !generatedNewToken) {
-            fetchGenerateNewToken()
-        }
-    }, [apiURL, dispatch, generatedNewToken, person, token, validToken])
- */
+    const {token} = useParams() // get token from URL parameters
+    const navigate = useNavigate() // to navigate programmatically
+
+    // if no token in URL and no person in state, redirect to home
     useEffect(() => {
         const fetchValidateToken = async () => {
             try {
                 const startTimeStamp: number = Date.now();
-                const response = await axios.post(apiURL + "/post/curriculum_by_token", {"token" : token});
+                const response = await axios.post(apiURL + "/post/curriculum_by_token", {"token" : token}); // validate token and get person data
                 const endTimeStamp: number = Date.now();
                 const result: number = endTimeStamp - startTimeStamp;
                 console.log(`Total request time for curriculum by token requisition: ${result}ms`);
 
+                // if response is valid, set person in state and mark token as valid
                 if(response){
                     setValidToken(true)
                     dispatch(setPerson({person: response.data}))
                 }
-            } catch (error) {
+            } catch (error) { // if error, token is invalid
                 console.error("Error fetching for authenticate token:", error);
                 setValidToken(false)
             }
         }
-        if(token && validToken === null) {
+        if(token && validToken === null) { // only validate if there's a token and we haven't validated yet
             fetchValidateToken()
         }
     }, [token, navigate, dispatch, apiURL, person, validToken])
 
     return (
+        // loading state while validating token
         (!person && validToken === null && token) ?
             <Card type="info" content={
                 <span className="row md-column-gap">
@@ -83,6 +58,7 @@ export const Curriculum: React.FC = () => {
             }>
             </Card>
         :
+            // if token is valid or person data is already in state, show the curriculum, if token is invalid, show error message
             (validToken === true || person) ?
                 <div className="main-container">
                     <div className="main-container-a" style={person?.skills.length && person?.langs.length ? undefined : {width: "100%"}}>
@@ -127,7 +103,7 @@ export const Curriculum: React.FC = () => {
                             null
                     }
                 </div>
-            :
+            :  
                 <Card type="alert" content={
                     <>
                         Token inválido!

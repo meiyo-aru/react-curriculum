@@ -11,6 +11,7 @@ const AboutMe: React.FC<AboutMeProps> = ({
   text,
   isLoading,
 }) => {
+  // Card with title "Sobre mim" and text content
   return (
     <Card isLoading={isLoading} title="Sobre mim" boxShadow={true} content={<Text isLoading={isLoading} type="p" content={text && text} />} />
   );

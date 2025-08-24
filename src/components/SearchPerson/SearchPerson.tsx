@@ -1,3 +1,4 @@
+"use client"
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {Button} from "meiyo-react-components"
@@ -6,9 +7,9 @@ import style from "./SearchPerson.module.scss"
 import { useDispatch } from "react-redux";
 import { setPerson } from "../../features/Person/PersonSlice";
 import Card from "../Card/Card";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 export const SearchPerson: React.FC = () => {
     const [username, setUsername] = useState<string | null>(null); // state to control username input
@@ -16,9 +17,9 @@ export const SearchPerson: React.FC = () => {
     const [personAuthenticated, setPersonAuthenticated] = useState<boolean | null>(null) // state to control if person is authenticated
     const [loadingCurriculum, setLoadingCurriculum] = useState<boolean>(false); // state to control loading state
 
-    const navigate = useNavigate() // to navigate programmatically
+    const router = useRouter() // to navigate programmatically
     const dispatch = useDispatch() // to dispatch actions to the redux store
-    const apiURL = import.meta.env.VITE_API_URL // API URL from environment variable or default to localhost
+    const apiURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"; // API URL from environment variable or default to localhost
 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => { // update username state on input change
         setUsername(event.currentTarget.value)
@@ -41,7 +42,7 @@ export const SearchPerson: React.FC = () => {
                     setPersonAuthenticated(true)
                     dispatch(setPerson({person: response.data}))
                     setLoadingCurriculum(false)
-                    navigate("/curriculum")
+                    router.push("/curriculum")
                 }
             } catch (error) { // if error, set personAuthenticated to false
                 console.error("Error fetching for authenticate requisition:", error);
@@ -86,22 +87,22 @@ export const SearchPerson: React.FC = () => {
                         <div className="column flex md-row-gap" style={{width: "40rem"}}>
                             <span className="column flex">
                                 <label htmlFor="username"><strong>Nome de usuário:</strong></label>
-                                <input type="text" name="username" className={style.input} onChange={(event) => {handleUsernameChange(event)}} id="username" placeholder="Digite seu nome de usuário"></input>
+                                <input type="text" name="username" className={style['input']} onChange={(event) => {handleUsernameChange(event)}} id="username" placeholder="Digite seu nome de usuário"></input>
                                 {
                                     (!usernameExists && username?.trim()) &&
-                                        <span className={style.alert}>
+                                        <span className={style['alert']}>
                                             *Nome de usuário não existe!
                                         </span>
                                 }
                             </span>
                             <span className="column flex">
                                 <label htmlFor="password"><strong>Senha: </strong></label>
-                                <input id="password" name="password" placeholder="Digite sua senha" type="password" className={style.input} />
+                                <input id="password" name="password" placeholder="Digite sua senha" type="password" className={style['input']} />
                                 
                                 {
                                     personAuthenticated === false &&
                                         <>
-                                            <span className={style.alert}>
+                                            <span className={style['alert']}>
                                                 *Senha incorreta!
                                             </span>
                                         </>

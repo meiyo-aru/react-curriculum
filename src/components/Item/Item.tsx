@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef, useState } from 'react'
 import SeeMore from '../../features/SeeMore/SeeMore'
 import Card from '../Card/Card'
@@ -165,7 +167,7 @@ const Item: React.FC<ItemProps> = ({
                                                         }
                                                     
                                                         {'resume' in item &&
-                                                            <div className={`${style.resume}`}>
+                                                            <div className={`${style['resume']}`}>
                                                                 <Text type="h5" content={<><strong>Resumo: </strong> {item.resume}</>}></Text>
                                                             </div>
                                                         }

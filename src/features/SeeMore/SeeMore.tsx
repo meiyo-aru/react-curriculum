@@ -33,12 +33,12 @@ const SeeMore: React.FC<SeeMoreProps> = ({
     
     // Render the "see more" button with appropriate text based on clicked state
     return (
-        <div className={`${style.seeMore} `} onClick={(event) => {
+        <div className={`${style['see-more']} `} onClick={(event) => {
                 if(onClick){
                     onClick(event);
                 }
             }}>
-            <span className={`${isActive && style.active} ${clsx(classes && classes)} ${ clicked && style.clicked}`}>
+            <span className={`${isActive && style['active']} ${clsx(classes && classes)} ${ clicked && style['clicked']}`}>
                 {clicked ? "Ver menos" : "Ver mais"}
             </span>
         </div>

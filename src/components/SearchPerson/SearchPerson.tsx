@@ -11,49 +11,51 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export const SearchPerson: React.FC = () => {
-    const [username, setUsername] = useState<string | null>(null);
-    const [usernameExists, setUsernameExists] = useState<boolean>(false)
-    const [personAuthenticated, setPersonAuthenticated] = useState<boolean | null>(null)
-    const [loadingCurriculum, setLoadingCurriculum] = useState<boolean>(false);
+    const [username, setUsername] = useState<string | null>(null); // state to control username input
+    const [usernameExists, setUsernameExists] = useState<boolean>(false) // state to control if username exists
+    const [personAuthenticated, setPersonAuthenticated] = useState<boolean | null>(null) // state to control if person is authenticated
+    const [loadingCurriculum, setLoadingCurriculum] = useState<boolean>(false); // state to control loading state
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const apiURL = import.meta.env.VITE_API_URL
-    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const navigate = useNavigate() // to navigate programmatically
+    const dispatch = useDispatch() // to dispatch actions to the redux store
+    const apiURL = import.meta.env.VITE_API_URL // API URL from environment variable or default to localhost
+
+    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => { // update username state on input change
         setUsername(event.currentTarget.value)
     }
  
-    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-            const password = event.currentTarget.password.value as string
-            const fetchAuthenticate = async () => {
-                try {
-                    const startTimeStamp: number = Date.now();
-                    const response = await axios.post(apiURL + "/post/curriculum", {"username" : username, "password" : password});
-                    const endTimeStamp: number = Date.now();
-                    const result: number = endTimeStamp - startTimeStamp;
-                    console.log(`Total request time for authenticate requisition: ${result}ms`);
-    
-                    if(response){
-                        setPersonAuthenticated(true)
-                        dispatch(setPerson({person: response.data}))
-                        setLoadingCurriculum(false)
-                        navigate("/curriculum")
-                    }
-                } catch (error) {
-                    console.error("Error fetching for authenticate requisition:", error);
-                    setPersonAuthenticated(false)
+    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => { // handle form submission
+        event.preventDefault() // prevent default form submission behavior
+        const password = event.currentTarget.password.value as string // get password value from form
+        // authenticate user with username and password
+        const fetchAuthenticate = async () => {
+            try {
+                const startTimeStamp: number = Date.now();
+                // make POST request to authenticate user
+                const response = await axios.post(apiURL + "/post/curriculum", {"username" : username, "password" : password});
+                const endTimeStamp: number = Date.now();
+                const result: number = endTimeStamp - startTimeStamp;
+                console.log(`Total request time for authenticate requisition: ${result}ms`);
+
+                if(response){ // if response is valid, set person in state and navigate to curriculum page
+                    setPersonAuthenticated(true)
+                    dispatch(setPerson({person: response.data}))
                     setLoadingCurriculum(false)
+                    navigate("/curriculum")
                 }
+            } catch (error) { // if error, set personAuthenticated to false
+                console.error("Error fetching for authenticate requisition:", error);
+                setPersonAuthenticated(false)
+                setLoadingCurriculum(false)
             }
-            if(password?.trim()) {
-                fetchAuthenticate();
-                setLoadingCurriculum(true)
-            }
-    
-        
+        }
+        if(password?.trim()) { // only authenticate if password is not empty
+            fetchAuthenticate();
+            setLoadingCurriculum(true)
+        }
     }
     
+    // verify if username exists whenever it changes
     useEffect(() => {
         const fetchVerifyUsername = async () => {
             try {

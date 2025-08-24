@@ -7,21 +7,22 @@ import type { RootState } from "../../store"
 import { setFocusedInfo } from "../../features/Info/InfoSlice"
 
 interface InfoProps {
-    componentId?: string | null
-    infoId: number
-    text: string
+    componentId?: string | null // optional, to identify which component this info belongs to
+    infoId: number // unique identifier for this info icon
+    text: string // text to display in the info box
 }
 
 export const Info: React.FC<InfoProps> = ({...props}) => {
-    
-    const infoIdFocused = useSelector((state: RootState) => state.Info.infoFocused)
-    const componentIdFocused = useSelector((state: RootState) => state.Info.componentId)
+
+    const infoIdFocused = useSelector((state: RootState) => state.Info.infoFocused) // global state to control which info is focused
+    const componentIdFocused = useSelector((state: RootState) => state.Info.componentId) // global state to control which component's info is focused
 
     const dispatch = useDispatch()
-
+    // toggle focused state
     function handleFocused() {
         dispatch(setFocusedInfo({infoFocused: isFocused() ? null : props.infoId, componentId: props.componentId ? props.componentId : null}))
     }
+    // check if this info is focused
     function isFocused() {
         return props.infoId === infoIdFocused && (componentIdFocused ? props.componentId === componentIdFocused : true)
     }

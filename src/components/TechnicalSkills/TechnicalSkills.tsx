@@ -11,9 +11,9 @@ import { Info } from "../Info/Info"
 
 
 interface TechnicalSkillsProps {
-    technicalSkill: TechnicalSkill[] | undefined
-    isLoading?: boolean
-    componentId?: string
+    technicalSkill: TechnicalSkill[] | undefined // array of technical skills
+    isLoading?: boolean // loading state
+    componentId?: string // optional component ID for title
 }
 
 const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
@@ -21,36 +21,11 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
     isLoading,
     componentId = "Habilidades Técnicas",
 }) => {
-    const [focused, setFocused] = useState<number|null>(null)
-    const maxItems = 6
 
-/* 
-    Commented because multiple asynchronous requests are so much costly for free plan of Render,
-    then only one complex request is more interesting in this context
-*/
-/*     const [technicalSkill, setTechnicalSkill] = useState<TechnicalSkill[] | null>(null)
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const startTimeStamp: number = Date.now();
-    
-                const response = await axios.get((dataApi && dataApi) + "/get/technical_skills?people_id=" + personId)
-    
-                const endTimeStamp: number = Date.now();
-                const result: number = endTimeStamp - startTimeStamp;
-                console.log(`Total request time for Experiences: ${result}ms`);
-                
-                if(response){
-                    setTechnicalSkill(response.data)
-                }
-            } catch (error) {
-                console.error("Error fetching  for Experiences data:", error);
-            }
-        }
-        fetchData()
-    }, [personId, dataApi])
- */    
+    const [focused, setFocused] = useState<number|null>(null) // state to track which skill is focused
+    const maxItems = 6 // maximum items to show before "show more" button its clicked
+   
+    // sort technical skills by percent_level in descending order
     const sortedTechnicalSkills = useMemo(() => {
         if (!technicalSkill) {
         return []; 
@@ -58,27 +33,19 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
         return [...technicalSkill].sort((a, b) => b.percent_level - a.percent_level);
     }, [technicalSkill]); 
 
-    const ShowMoreState = useSelector((state: RootState) => state.ShowMore)
-    const dispatch = useDispatch();
+    const ShowMoreState = useSelector((state: RootState) => state.ShowMore) // global state to control "show more" button
+    const dispatch = useDispatch(); // dispatch function to send actions to the store
 
-    if(!isLoading && technicalSkill) {
+    if(!isLoading && technicalSkill) { // if not loading and technical skills exist, show the skills, else show loading state
         return (
             <Card title={
                     <>
                         {componentId}
                         <Info infoId={-1} text="Habilidades técnicas são capacidades ou aptidões que um profissional possui. A barra de aptidão mensura o nível de confiança, experiência prática e conhecimento sobre o assunto."></Info>
-{/*                         <span style={{float: "right", color: "#4b678f", cursor: "pointer"}} onClick={() => {
-                            handleFocused(-1)
-                        }}>
-                            <FontAwesomeIcon icon={faCircleInfo} />
-                        </span>
-                        <Card type="card" isLoading={isLoading} classes={`${isFocused(-1) ? styles.active : styles.inactive} ${styles.info} bg-light-grey`} content={
-                            <span>Habilidades técnicas são capacidades ou aptidões que um profissional possui. A barra de aptidão mensura o nível de confiança, experiência prática e conhecimento sobre o assunto.</span>
-                        }>
-                        </Card>  */}
                     </>
                 } boxShadow={true} isLoading={isLoading} classes="column sm-row-gap" content={
-                <div className="flex column sm-row-gap">
+                    <div className="flex column sm-row-gap">
+                    {/* list of technical skills with their levels and proficiency bars */}
                     {sortedTechnicalSkills.map((skill, index) => (
                         (index < maxItems || ShowMoreState.componentId === componentId) &&                
                         <Card key={index} type="card" boxShadow={true} style={{padding: "10px 12px"}} onMouseEnter={() => {setFocused(skill.id)}} onMouseLeave={() => {setFocused(null)}} isLoading={isLoading} content={
@@ -105,6 +72,7 @@ const TechnicalSkills: React.FC<TechnicalSkillsProps> = ({
                             }></Card>
                         
                     ))}
+                    {/* show "show more" button if there are more items than maxItems */}
                     {sortedTechnicalSkills.length > maxItems &&
                         <ShowMoreButton componentId={componentId} onClick={() => {dispatch(setShowMoreClicked({componentId: componentId}))}}></ShowMoreButton>
                     }

@@ -11,6 +11,7 @@ const initialState: SeeMoreState = {
     seeMoreId: null
 };
 
+// Slice to manage the state of "see more" buttons across the application
 export const SeeMoreSlice = createSlice({
     name: 'SeeMore', 
     initialState,    

@@ -9,6 +9,7 @@ const initialState: ShowMoreState = {
     componentId: null,
 };
 
+// Slice to manage the state of "show more" buttons across the application
 export const ShowMoreSlice = createSlice({
     name: "ShowMore",
     initialState,

@@ -13,6 +13,7 @@ const Header: React.FC<HeaderProps> = ({
     isLoading,
 }) => {
     return (
+        // Header with name, positions, contact info and CopyURL button
         <Card boxShadow={true} isLoading={isLoading} content={
             <>
                 <Text type="h1" isLoading={isLoading} content={person && person.name}></Text>

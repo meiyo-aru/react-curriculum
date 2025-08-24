@@ -6,17 +6,17 @@ import React, { type CSSProperties } from "react";
 import clsx from "clsx";
 
 interface CardProps {
-    title?: string | React.ReactNode |null
-    content?: React.ReactNode | null
-    type?: "smCard" | "card" | "section" | "header" | "alert" | "success" | "warning" | "info" | "button"
-    boxShadow?: boolean
-    isLoading?: boolean
-    transform?: boolean
-    classes?: string
-    style?: CSSProperties
-    onMouseEnter?: React.MouseEventHandler<HTMLElement>
-    onMouseLeave?: React.MouseEventHandler<HTMLElement>
-    onClick?: React.MouseEventHandler<HTMLElement>
+    title?: string | React.ReactNode |null // optional, can be string or React node
+    content?: React.ReactNode | null // optional, can be any React node
+    type?: "smCard" | "card" | "section" | "header" | "alert" | "success" | "warning" | "info" | "button" // type of card, affects styling
+    boxShadow?: boolean // optional, if true adds box shadow on hover
+    isLoading?: boolean // optional, if true shows loading state
+    transform?: boolean // optional, if true adds transform effect on hover
+    classes?: string // optional, additional classes to add
+    style?: CSSProperties  // optional, additional inline styles
+    onMouseEnter?: React.MouseEventHandler<HTMLElement> // optional mouse enter event handler
+    onMouseLeave?: React.MouseEventHandler<HTMLElement> // optional mouse leave event handler
+    onClick?: React.MouseEventHandler<HTMLElement> // optional click event handler
 }
 
 const Card: React.FC<CardProps> = ({
@@ -32,6 +32,7 @@ const Card: React.FC<CardProps> = ({
     onMouseLeave,
     onClick
 }) => {
+  // Define classes based on type and props
   const smCardClass = clsx(classes, styles.smCard, boxShadow && "hover-shadow flex-grow");
   const cardClass = clsx(styles.card, boxShadow && "hover-shadow flex-grow", classes);
   const sectionClass = clsx(classes, styles.section, boxShadow && "hover-shadow flex-grow");
@@ -42,6 +43,7 @@ const Card: React.FC<CardProps> = ({
   const infoClass = clsx(classes, styles.info, "flex-grow");
   const buttonClass = clsx(classes, styles.button, "flex-grow", transform && "hover-size-in");
 
+  // Render based on type
   switch (type) {
     case "smCard": 
       return (
